@@ -7,11 +7,11 @@ My API End points:
 (Currently only hosted on local host - will update with server later once I have a server running)
 
 ## URF Data
-###### GET  /URFData
+### - GET  /URFData
 
 Returns the server's total compiled URF Data as JSON
 
-### Format:
+###### Format:
 | Variable Name     | Type      	| Description  											|
 | ----------------- |:-------------:| -----------------------------------------------------:|
 |'gamesAnalyzed' 	| int 			| The total amount of games the server has analyzed 	|
