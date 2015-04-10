@@ -1,0 +1,84 @@
+/* 
+This is the style sheet for the about page of the website 
+@author Rhys Howell
+*/
+
+.aboutPage {
+    background-color: white;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    text-align: center; 
+
+    // font-family: "Cabin";
+    font-family: 'MuseoSans300', sans-serif;
+
+    color: white;
+
+    z-index: -3;
+
+    .accentText {
+        color: $accent;
+    }
+
+    .whiteText {
+        color: white;
+    }
+
+    .blackText {
+        color: black;
+    }
+
+    .redBackground {
+        background-color: $accent;
+        // border-bottom: 1px solid $dark;
+        box-shadow: 0px 0px 4px black;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 7em;
+        z-index: -3;
+    }
+
+    .topBarWrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        text-align: center;
+
+        z-index: -2;
+
+        .topBar {
+            margin-top: 3em;
+
+            .topOption {
+                display: inline-block;
+                margin-left: 20px;
+                margin-right: 20px;
+
+                font-size: 16px;
+
+                padding-bottom: 4px;
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+            .topOption:hover {
+                border-bottom: 2px solid white;
+                cursor: pointer;
+            }
+
+            #nemesisTop {
+                font-size: 20px;
+            }
+        }
+    }
+}

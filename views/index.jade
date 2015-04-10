@@ -1,0 +1,30 @@
+extends layout
+block content
+	script(defer="defer" src="/javascripts/Controller.js")
+	.landingPage
+		.redBackground
+		.redPattern
+		.teeeeeeeeeemo
+		.topBarWrapper
+			.topBar
+				//- #about
+				a.topOption(href="/about").
+					About
+				//- .topOption#best
+				a.topOption(href="/")#nemesisTop.
+					Nemesis
+				//- .topOption#more
+				a.topOption(href="/buddy").
+					Buddy
+		.middleArea
+			//- .steps
+			//- .horns
+			.searchTitle.
+				Nemesis<span class="blackText">.</span>
+			form#searchForm(autocomplete="on")
+				input.searchBox(type="text" placeholder="Summoner Name" autocomplete="on")
+				input.searchButton(type="submit" value="Go!")
+				.searchDescription.
+					Who is your League of Legends nemesis?
+		.bodyArea
+			.resultText
