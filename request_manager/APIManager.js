@@ -113,7 +113,15 @@ APIManager.getChallengerAPI = function (beginDate, callback, errorCallback) {
 	var challengerAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + beginDate + "&api_key=" + this.API_Key, callback, errorCallback);
 }
 
-APIManager.getMostRecentChallengerAPI = function (beginDate, callback, errorCallback) {
+// used to get the Challenge API acceptable time
+var getTruncatedFiveMinTime = function(timeVar) {
+	timeVar *= 0.01;
+	timeVar = Math.floor(timeVar);
+	timeVar *= 100;
+	return timeVar;
+}
+
+APIManager.getMostRecentChallengerAPI = function (callback, errorCallback) {
 	var currentTime = Date.now();
 
 	var pullTime = getTruncatedFiveMinTime(currentTime);

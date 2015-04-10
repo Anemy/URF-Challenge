@@ -28,28 +28,22 @@ var champion = {
 	gold: 0
 }
 
-console.log("CurrentTime: " + currentTime);
-
-var getTruncatedFiveMinTime = function(timeVar) {
-	timeVar *= 0.01;
-	timeVar = Math.floor(timeVar);
-	timeVar *= 100;
-	return timeVar;
-}
-
-
 // rate at which server pulls challenge API data from riot (in ms)
 const dataUpdateRate = 100; // 1000 is one second
 
 // this cycle manages the server updating the URF data.
 URFManager.queryCycle = setInterval(function () {
+
+	var that = this; // hacky way to refer to the current obj in "async" calls
+
 	var errorCallback = function (errorLog) {
 		console.log("Pulling more URF data failed: " + errorLog);
 	}
 
 	var successCallBack = function(data) {
-
+		// TODO: update the URFData according to data
 	}
 
-	APIManager.getMostRecentChallengerAPI(pullTime, );
+	// call the API Manager to get 15 games.
+	APIManager.getMostRecentChallengerAPI(successCallBack, errorCallback);
 }, dataUpdateRate);
