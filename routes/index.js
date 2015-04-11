@@ -56,8 +56,10 @@ router.get('/URFData', function(req, res, next) {
 		res.end(data);
 	}
 
+	// console.log("Sending them: " + JSON.stringify(URFManager.URFData));
+
 	// sends back the API Manager's compiled URF stats
-	res.end(JSON.stringify(APIManager.URFStats));
+	res.end(JSON.stringify(URFManager.URFData));
 
 	// // used when there's a succcessful request for URF data (it does more with the data)
 	// var callback = function (data) {

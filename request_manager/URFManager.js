@@ -15,21 +15,33 @@ URFManager.URFData = {
 	gamesAnalyzed: 0,
 	startTime: 	Date.now(),
 	champions: [],
-	championsDefined: false
 };
+
+URFManager.championsDefined = false;
+
 
 // used as a champions class for the champions URF data array
 var champion = function(championId) {
 	this.champID = championId;
 	this.champName = "none";
+
 	this.totalPlays = 0;
+
 	this.totalWins = 0;
 	this.totalLosses = 0;
 	this.winRate = 0;
+
 	this.kills = 0;
 	this.deaths = 0;
-	this.kda = 0;
-	this.gol = 0;
+	this.averageKills = 0.0;
+	this.averageDeaths = 0.0;
+	this.kda = 0.0;
+
+	this.gold = 0;
+	this.averageGold = 0.0;
+
+	this.cs = 0;
+	this.averageCS = 0.0;
 }
 
 // Fetches necessary static data
@@ -50,9 +62,9 @@ URFManager.start = function() {
 			that.URFData.champions[thisChamp.id] = new champion(thisChamp.id);
 			that.URFData.champions[thisChamp.id].champName = thisChamp.name;
 
-			console.log("Adding champ name: " + that.URFData.champions[thisChamp.id].champName);
+			// console.log("Adding champ name: " + that.URFData.champions[thisChamp.id].champName);
 		}
-		that.URFData.championsDefined = true;
+		that.championsDefined = true;
 
 		// start the data collecting cycle
 		that.queryCycle();
@@ -76,7 +88,7 @@ URFManager.queryCycle = function() {
 	var queryInterval = setInterval(function () {
 
 		// don't update data if not all of the set up data for the champions array is filled
-		if(that.URFData.championsDefined == false) {
+		if(that.championsDefined == false) {
 			return;
 		}
 
@@ -116,12 +128,34 @@ URFManager.queryCycle = function() {
 					}
 
 					// update total stats
-					that.URFData.champions[thisPlayer.championId].kills ++;
+					that.URFData.champions[thisPlayer.championId].kills += thisPlayer.stats.kills;
 					that.URFData.champions[thisPlayer.championId].deaths += thisPlayer.stats.deaths;
 					that.URFData.champions[thisPlayer.championId].cs += thisPlayer.stats.minionsKilled;
 					that.URFData.champions[thisPlayer.championId].gold += thisPlayer.stats.goldEarned;
 
 					// TODO calculate winrate + kda ratios + averages: kills deaths gold cs
+
+					// winrate
+					that.URFData.champions[thisPlayer.championId].winRate = that.URFData.champions[thisPlayer.championId].totalWins / 
+																				that.URFData.champions[thisPlayer.championId].totalPlays;
+
+					// kill / death
+					that.URFData.champions[thisPlayer.championId].kda = that.URFData.champions[thisPlayer.championId].kills / 
+																				that.URFData.champions[thisPlayer.championId].deaths;
+
+					// kill + death avg
+					that.URFData.champions[thisPlayer.championId].averageKills = that.URFData.champions[thisPlayer.championId].kills / 
+																				that.URFData.champions[thisPlayer.championId].totalPlays;
+					that.URFData.champions[thisPlayer.championId].averageDeaths = that.URFData.champions[thisPlayer.championId].deaths / 
+																				that.URFData.champions[thisPlayer.championId].totalPlays;
+
+					// gold avg
+					that.URFData.champions[thisPlayer.championId].averageGold = that.URFData.champions[thisPlayer.championId].gold / 
+																				that.URFData.champions[thisPlayer.championId].totalPlays;
+
+					// cs avg
+					that.URFData.champions[thisPlayer.championId].averageCS = that.URFData.champions[thisPlayer.championId].cs / 
+																				that.URFData.champions[thisPlayer.championId].totalPlays;
 				}
 			}
 

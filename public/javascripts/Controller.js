@@ -109,8 +109,11 @@ $(document).ready(function() {
 				// sets the text of the description to the response
 				$('.searchDescription').text(messageToDisplay);
 
+
+
 				// call to parse the returned match data
-				parseMatchData(JSON.parse(data));
+				// parseMatchData(JSON.parse(data));
+				$('.resultText').text(data);
 			}
 		);
 
