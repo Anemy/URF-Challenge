@@ -1,6 +1,6 @@
 # URF Challenge
 
-An application which provides insights into a URF win ratios for champions in League of Legends 
+An application which provides insights into a URF win ratios for champions in League of Legends.
 
 Run the server on your localhost (with Node.js installed) using the command:
 npm start
@@ -17,7 +17,7 @@ Returns the server's total compiled URF Data as JSON
 | Variable Name     | Type      	| Description  												|
 | ----------------- |:------------- |:--------------------------------------------------------- |
 |**gamesAnalyzed** 	| int 			| The total amount of games the server has analyzed 		|
-|**startTime** 		| int 			| The start time of the server's analysis 					|
+|**startTime** 		| int 			| The start time of the server's analysis (epoch)			|
 |**champions**		| array 		| Contains an array of champion objects						|
 |**champion**		| object 		| Contains fields relating to a specific champion (below)	|
 
@@ -45,3 +45,6 @@ Returns the server's total compiled URF Data as JSON
 Currently just returns the requested summoner's past 10 matches as JSON (under development)
 
 ###### Format:
+
+---
+By Rhys 

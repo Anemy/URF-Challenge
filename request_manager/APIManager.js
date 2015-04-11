@@ -69,7 +69,7 @@ APIManager.makeRequest = function (url, callback, errorCallback) {
 
 	if(!this.checkAllowedRequest()) {
 		// console.log("No allowed req");
-		callback("overload");
+		errorCallback("overload");
 	}
 
 	// console.log("Making request to: " + url);
@@ -80,7 +80,7 @@ APIManager.makeRequest = function (url, callback, errorCallback) {
 		}
 		else {
 			// console.log("Response: " + JSON.stringify(response));
-			console.log("Status code: " + response.statusCode);
+			// console.log("Status code: " + response.statusCode);
 
 			if(response.statusCode == 500) {
 				errorCallback("error");

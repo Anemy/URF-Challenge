@@ -79,7 +79,9 @@ URFManager.start = function() {
 }
 
 // rate at which server pulls challenge API data from riot (in ms)
-const dataUpdateRate = 10000; // 1000 is one second
+const dataUpdateRate = 1010 * 60 * 5; // 1000 is one second (so we do every five minutes so we dget new challenge games)
+const amountOfGamesAnalyzedPerCall = 10;
+const gameAnalyzedPerCallRate = 4000; // delay between each call to analyze a game
 
 // this cycle manages the server updating the URF data.
 URFManager.queryCycle = function() {
@@ -102,19 +104,13 @@ URFManager.queryCycle = function() {
 
 			var innerSuccessCallBack = function(matchData) {
 				matchData = JSON.parse(matchData);
-				// TODO: update the URFData according to the match's data
-				// console.log("Inner success. " + matchData);
-				// var firstItem;
-				// for(firstItem in matchData) {
-				// 	// gets the first element of the json
-				// 	break;
-				// }
+
+				that.URFData.gamesAnalyzed++;
 
 				// parse champ data for each player in the game
 				for(player in matchData.participants) {
 					var thisPlayer = matchData.participants[player];
 
-					that.URFData.gamesAnalyzed++;
 					that.URFData.champions[thisPlayer.championId].totalPlays ++;
 
 					// console.log("Adding new data for champ: " + that.URFData.champions[thisPlayer.championId].champName +
@@ -164,14 +160,26 @@ URFManager.queryCycle = function() {
 
 			var matchArray = JSON.parse(matchArraydata);
 
-			for(var i = 0; i < 2; i++) {//matchArray.length; i++) { 
-				APIManager.getMatchData(matchArray[i], innerSuccessCallBack, errorCallback);
-			}
+			// for(var i = 0; i < amountOfGamesAnalyzedPerCall; i++) { // matchArray.length; i++) { 
+
+			var currentGameToAnalyze = 0;
+			// makes a call to analyze each game returned by the API challenge at a certain interval (to avoid overload)
+			var gameAnalyzeInterval = setInterval(function() {
+				// console.log("Analyzing game: " + currentGameToAnalyze);
+
+				APIManager.getMatchData(matchArray[currentGameToAnalyze], innerSuccessCallBack, errorCallback);
+
+				currentGameToAnalyze ++;
+
+				// end the analyze loop
+				if(currentGameToAnalyze >= amountOfGamesAnalyzedPerCall || currentGameToAnalyze >= matchArray.length) {
+					clearInterval(gameAnalyzeInterval);
+					gameAnalyzeInterval = 0;
+				}
+			}, gameAnalyzedPerCallRate);
 		}
 
 		// call the API Manager to get 15 game ids (sent to successCallBack).
 		APIManager.getMostRecentChallengeAPI(successCallBack, errorCallback);
 	}, dataUpdateRate);
 }
-
-//  $('#resultText).append('<li>' + matches[i].matchMode +'</li>');
