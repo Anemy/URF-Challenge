@@ -8,13 +8,15 @@ var APIManager = require('../request_manager/APIManager.js');
 var URFManager = require('../request_manager/URFManager.js');
 
 /* GET player data */
-router.get('/data*', function(req, res, next) {
+router.get('/playerData*', function(req, res, next) {
+	console.log("Req url: " + req.url);
 	var queryData = url.parse(req.url, true).query;
     if(queryData.name) {
 		// console.log("Requested: " + queryData.name);
 
 		// used when there's an error. Just returns whatever and doesn't try to do more things.
 		var errorCallback = function (data) {
+			res.status(400);
 			res.end(data);
 		}
 
@@ -32,6 +34,7 @@ router.get('/data*', function(req, res, next) {
 			console.log("Summoner id: " + jsonData[username].id);
 
 			var innerCallback = function (innerData) {
+				res.status(200);
 				res.end(innerData);
 			}
 
@@ -53,7 +56,7 @@ router.get('/URFData', function(req, res, next) {
 	}
 
 	// sends back the API Manager's compiled URF stats
-	// res.end(JSON.stringify(APIManager.URFStats));
+	res.end(JSON.stringify(APIManager.URFStats));
 
 	// // used when there's a succcessful request for URF data (it does more with the data)
 	// var callback = function (data) {

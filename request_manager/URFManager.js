@@ -13,7 +13,7 @@ var URFManager = module.exports = {}
 // used to compile URF data for highscores
 URFManager.URFData = {
 	gamesAnalyzed: 0,
-	startTime = Date.now(),
+	startTime: 	Date.now(),
 	champions: []
 };
 
@@ -29,7 +29,7 @@ var champion = {
 }
 
 // rate at which server pulls challenge API data from riot (in ms)
-const dataUpdateRate = 100; // 1000 is one second
+const dataUpdateRate = 10000; // 1000 is one second
 
 // this cycle manages the server updating the URF data.
 URFManager.queryCycle = setInterval(function () {
@@ -40,10 +40,31 @@ URFManager.queryCycle = setInterval(function () {
 		console.log("Pulling more URF data failed: " + errorLog);
 	}
 
-	var successCallBack = function(data) {
-		// TODO: update the URFData according to data
+	var successCallBack = function(matchArraydata) {
+		
+		// console.log("URF Data success: " + matchArraydata);
+
+		var innerSuccessCallBack = function(matchData) {
+			// TODO: update the URFData according to the match's data
+			// console.log("Inner success. " + matchData);
+			var username;
+			for(username in matchData) {
+				// gets the first element of the json
+				break;
+			}
+			console.log("Summoner id: " + matchData[username].id);
+
+		}
+
+		var matchArray = JSON.parse(matchArraydata);
+
+		for(var i = 0; i < 2; i++) {//matchArray.length; i++) { 
+			APIManager.getMatchData(matchArray[i], innerSuccessCallBack, errorCallback);
+		}
 	}
 
-	// call the API Manager to get 15 games.
-	APIManager.getMostRecentChallengerAPI(successCallBack, errorCallback);
+	// call the API Manager to get 15 game ids (sent to successCallBack).
+	APIManager.getMostRecentChallengeAPI(successCallBack, errorCallback);
 }, dataUpdateRate);
+
+//  $('#resultText).append('<li>' + matches[i].matchMode +'</li>');

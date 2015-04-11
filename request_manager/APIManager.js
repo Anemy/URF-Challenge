@@ -78,7 +78,10 @@ APIManager.makeRequest = function (url, callback, errorCallback) {
 		if (!error && response.statusCode == 200) {
 			callback(body);
 		}
-		else { 
+		else {
+			// console.log("Response: " + JSON.stringify(response));
+			console.log("Status code: " + response.statusCode);
+
 			if(response.statusCode == 500) {
 				errorCallback("error");
 			}
@@ -105,30 +108,58 @@ APIManager.getSummonerData = function (summonerName, callback, errorCallback) {
 	
 }
 
+// gets a summoner's most recent 10 games. (gameIDs)
 APIManager.getMatchHistory = function (summonerID, callback, errorCallback) {
 	var matchHistoryData = this.makeRequest("https://na.api.pvp.net/api/lol/" + this.region + "/v2.2/matchhistory/" + summonerID + "?api_key="+this.API_Key, callback, errorCallback);
 }
 
-APIManager.getChallengerAPI = function (beginDate, callback, errorCallback) {
+// Retrieves individual match's data
+APIManager.getMatchData = function (matchID, callback, errorCallback) {
+	var challengerAPIData = this.makeRequest('https://na.api.pvp.net/api/lol/na/v2.2/match/' + matchID + '?includeTimeline=false&api_key=' + this.API_Key, callback, errorCallback);
+}
+
+APIManager.getChallengeAPI = function (beginDate, callback, errorCallback) {
 	var challengerAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + beginDate + "&api_key=" + this.API_Key, callback, errorCallback);
 }
 
 // used to get the Challenge API acceptable time
 var getTruncatedFiveMinTime = function(timeVar) {
-	timeVar *= 0.01;
-	timeVar = Math.floor(timeVar);
-	timeVar *= 100;
-	return timeVar;
+
+	//timeVar.year .minutes
+	// var fromtimevar = new Date(timeVar.getFullYear(),1,1,4,55); // 4:55
+
+    // date.setHours(date.getHours() + Math.round(date.getMinutes()/60));
+    // date.setMinutes(0);
+    timeVar.setSeconds(0);//,0);
+    timeVar.setMilliseconds(0);
+    timeVar.setDate(timeVar.getDate() - 1);
+    if(timeVar.getDate() == -1) {
+    	timeVar.setDate(28);
+    }
+    // console.log("Minutes before: " + timeVar.getMinutes());
+    timeVar.setMinutes(timeVar.getMinutes() - (timeVar.getMinutes()%5));
+    // console.log("Minutes after: " + timeVar.getMinutes());
+
+
+    return timeVar.getTime();
+
+	// timeVar *= 0.01;
+	// timeVar = Math.floor(timeVar);
+	// timeVar *= 100;
+	// return timeVar;
 }
 
-APIManager.getMostRecentChallengerAPI = function (callback, errorCallback) {
-	var currentTime = Date.now();
+APIManager.getMostRecentChallengeAPI = function (callback, errorCallback) {
 
-	var pullTime = getTruncatedFiveMinTime(currentTime);
+	var currentTime = new Date(); // .parseDate();
 
-	console.log("Pulling URF API Data at time: " + pullTime);
+	var pullTime = (getTruncatedFiveMinTime(currentTime)*0.001);//+200;
 
-	var challengerAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + beginDate + "&api_key=" + this.API_Key, callback, errorCallback);
+	// console.log("Date:Hours:Minutes:Seconds:Milliseconds  |  " + currentTime.getDate() + " : " + currentTime.getHours() + " : " + currentTime.getMinutes() + " : " + currentTime.getSeconds() + " : " + currentTime.getMilliseconds());
+
+	// console.log("Request: https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + pullTime + "&api_key=" + this.API_Key);
+
+	var challengeAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + pullTime + "&api_key=" + this.API_Key, callback, errorCallback);
 }
 
 //TODO: 40 requests for summoner data is allowed per call. optomize
@@ -139,8 +170,8 @@ Example Requests:
 API Challenge (list of games since epoch) (URF)
 https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=1428314700&api_key=
 
-Get Match id (with timeline)
-https://na.api.pvp.net/api/lol/na/v2.2/match/1786138920?includeTimeline=true&api_key=
+Get Match id (with timeline false)
+https://na.api.pvp.net/api/lol/na/v2.2/match/1786138920?includeTimeline=false&api_key=
 
 
 */
