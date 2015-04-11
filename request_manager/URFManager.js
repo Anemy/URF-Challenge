@@ -20,16 +20,16 @@ URFManager.URFData = {
 
 // used as a champions class for the champions URF data array
 var champion = function(championId) {
-	var champID = championId;
-	var champName = "none";
-	var totalPlays = 0;
-	var totalWins = 0;
-	var totalLosses = 0;
-	var winRate = 0;
-	var kills = 0;
-	var death = 0;
-	var kda = 0;
-	var gol = 0;
+	this.champID = championId;
+	this.champName = "none";
+	this.totalPlays = 0;
+	this.totalWins = 0;
+	this.totalLosses = 0;
+	this.winRate = 0;
+	this.kills = 0;
+	this.deaths = 0;
+	this.kda = 0;
+	this.gol = 0;
 }
 
 // Fetches necessary static data
@@ -39,18 +39,23 @@ URFManager.start = function() {
 	// makes the champions array have variables
 	URFManager.initiateChampionData = function (champsData) {
 		champsData = JSON.parse(champsData).data;
+
+		// populate the champions array
 		for(champ in champsData) {
 			// do something with that champ data
 			var thisChamp = champsData[champ];
 
-			console.log("Adding: " + thisChamp.name +" with id: " +thisChamp.id);
-
-			// console.log("this champions: " + this.champions + " that.champions: " + that.champions);
+			// console.log("Adding: " + thisChamp.name +" with id: " +thisChamp.id);
 
 			that.URFData.champions[thisChamp.id] = new champion(thisChamp.id);
 			that.URFData.champions[thisChamp.id].champName = thisChamp.name;
+
+			console.log("Adding champ name: " + that.URFData.champions[thisChamp.id].champName);
 		}
 		that.URFData.championsDefined = true;
+
+		// start the data collecting cycle
+		that.queryCycle();
 	}
 
 	URFManager.staticChampsErrorCallback = function() {
@@ -66,14 +71,14 @@ const dataUpdateRate = 10000; // 1000 is one second
 
 // this cycle manages the server updating the URF data.
 URFManager.queryCycle = function() {
-	setInterval(function () {
+	var that = this; // hacky way to refer to the current obj in "async" calls
+
+	var queryInterval = setInterval(function () {
 
 		// don't update data if not all of the set up data for the champions array is filled
-		if(this.URFData.championsDefined == false) {
+		if(that.URFData.championsDefined == false) {
 			return;
 		}
-
-		var that = this; // hacky way to refer to the current obj in "async" calls
 
 		var errorCallback = function (errorLog) {
 			console.log("Pulling more URF data failed: " + errorLog);
@@ -87,28 +92,36 @@ URFManager.queryCycle = function() {
 				matchData = JSON.parse(matchData);
 				// TODO: update the URFData according to the match's data
 				// console.log("Inner success. " + matchData);
-				var firstItem;
-				for(firstItem in matchData) {
-					// gets the first element of the json
-					break;
-				}
-				// console.log("First item: " + firstItem);
-				// console.log("Match first item: " + matchData[firstItem]);
-				// console.log("Match participants: " + matchData[firstItem].participants);
-				// console.log("Raw participants: " + JSON.stringify(matchData.participants));
+				// var firstItem;
+				// for(firstItem in matchData) {
+				// 	// gets the first element of the json
+				// 	break;
+				// }
+
+				// parse champ data for each player in the game
 				for(player in matchData.participants) {
 					var thisPlayer = matchData.participants[player];
 
 					that.URFData.gamesAnalyzed++;
 					that.URFData.champions[thisPlayer.championId].totalPlays ++;
-					// console.log("Object in: " + JSON.stringify(matchData.participants[object]));
-					// console.log("Stats: " + JSON.stringify(matchData.participants[object].stats));
-					console.log("champID: " + matchData.participants[object].championId);
-					console.log("Is winner: " + matchData.participants[object].stats.winner);
-					console.log("Kills: " + matchData.participants[object].stats.kills);
-					console.log("Kills: " + matchData.participants[object].stats.deaths);
-					console.log("CS: " + matchData.participants[object].stats.minionsKilled);
-					console.log("Gold: " + matchData.participants[object].stats.goldEarned);
+
+					// console.log("Adding new data for champ: " + that.URFData.champions[thisPlayer.championId].champName +
+					// 			" totalPlays: " + that.URFData.champions[thisPlayer.championId].totalPlays);
+
+					if(thisPlayer.stats.winner == true) {
+						that.URFData.champions[thisPlayer.championId].totalWins ++;
+					}
+					else {
+						that.URFData.champions[thisPlayer.championId].totalLosses ++;
+					}
+
+					// update total stats
+					that.URFData.champions[thisPlayer.championId].kills ++;
+					that.URFData.champions[thisPlayer.championId].deaths += thisPlayer.stats.deaths;
+					that.URFData.champions[thisPlayer.championId].cs += thisPlayer.stats.minionsKilled;
+					that.URFData.champions[thisPlayer.championId].gold += thisPlayer.stats.goldEarned;
+
+					// TODO calculate winrate + kda ratios + averages: kills deaths gold cs
 				}
 			}
 

@@ -2,6 +2,8 @@
 
 An application which provides insights into a URF win ratios for champions in League of Legends 
 
+Run the server on your localhost (with Node.js installed) using the command:
+npm start
 
 My API End points:
 (Currently only hosted on local host - will update with server later once I have a server running)
@@ -23,14 +25,20 @@ Returns the server's total compiled URF Data as JSON
 | Variable Name     | Type      	| Description  											|
 | ----------------- |:------------- |:----------------------------------------------------- |
 |**champName** 		| String 		| String relating to a champion's id 					|
+|**champID** 		| int 			| Riot's API champion ID								|
 |**totalPlays** 	| int 			| The number of games a champion has been played in		|
 |**totalWins** 		| int 			| The number of games a champion has won in				|
 |**totalLosses** 	| int 			| The number of games a champion has lost in			|
 |**winRate** 		| double 		| A ratio of wins to losses								|
-|**kills** 			| double 		| Average kills per game								|
-|**deaths** 		| double 		| Average deaths per game								|
-|**kda** 			| double 		| A ratio of kills to death								|
-|**gold** 			| double 		| Average gold earned by champion each game				|
+|**kills** 			| int 			| Total kills for all games								|
+|**deaths** 		| int 			| Total deaths for all games							|
+|**averageKills** 	| double 		| Average kills per game								|
+|**averageDeaths** 	| double 		| Average deaths per game								|
+|**kda** 			| double 		| A ratio of average kills to death						|
+|**gold** 			| int 			| Total gold earned by a champion 						|
+|**averageGold** 	| double 		| Average gold earned by champion each game				|
+|**cs** 			| int 			| Total cs earned by champion 							|
+|**averageCS** 		| double 		| Average cs earned by champion each game				|
 
 ### - GET  /playerData?name={summoner_name}
 
