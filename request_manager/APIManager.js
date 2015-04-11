@@ -122,18 +122,16 @@ APIManager.getChallengeAPI = function (beginDate, callback, errorCallback) {
 	var challengerAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + beginDate + "&api_key=" + this.API_Key, callback, errorCallback);
 }
 
-// used to get the Challenge API acceptable time
+// used to get the Challenge API acceptable time A DAY AGO
 var getTruncatedFiveMinTime = function(timeVar) {
 
-	//timeVar.year .minutes
 	// var fromtimevar = new Date(timeVar.getFullYear(),1,1,4,55); // 4:55
 
-    // date.setHours(date.getHours() + Math.round(date.getMinutes()/60));
-    // date.setMinutes(0);
     timeVar.setSeconds(0);//,0);
     timeVar.setMilliseconds(0);
-    timeVar.setDate(timeVar.getDate() - 1);
+    timeVar.setDate(timeVar.getDate() - 1); // get the day before, because those games are over.
     if(timeVar.getDate() == -1) {
+    	// TODO: actually give the right day for this edge case
     	timeVar.setDate(28);
     }
     // console.log("Minutes before: " + timeVar.getMinutes());
@@ -142,11 +140,6 @@ var getTruncatedFiveMinTime = function(timeVar) {
 
 
     return timeVar.getTime();
-
-	// timeVar *= 0.01;
-	// timeVar = Math.floor(timeVar);
-	// timeVar *= 100;
-	// return timeVar;
 }
 
 APIManager.getMostRecentChallengeAPI = function (callback, errorCallback) {
@@ -162,7 +155,7 @@ APIManager.getMostRecentChallengeAPI = function (callback, errorCallback) {
 	var challengeAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + pullTime + "&api_key=" + this.API_Key, callback, errorCallback);
 }
 
-//TODO: 40 requests for summoner data is allowed per call. optomize
+// TODO: 40 requests for summoner data is allowed per call. optomize (build up?)
 
 /*
 Example Requests:
@@ -173,6 +166,8 @@ https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=1428314700&api_key=
 Get Match id (with timeline false)
 https://na.api.pvp.net/api/lol/na/v2.2/match/1786138920?includeTimeline=false&api_key=
 
+Get list of all static champions
+https://na.api.pvp.net/api/lol/static-data/na/v1.2/champion?api_key=
 
 */
 

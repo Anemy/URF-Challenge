@@ -18,14 +18,17 @@ URFManager.URFData = {
 };
 
 // used as a champions class for the champions URF data array
-var champion = {
-	champName: "none",
-	totalPlays: 0,
-	totalWins: 0,
-	totalLosses: 0,
-	winRate: 0,
-	kda: 0,
-	gold: 0
+var champion = function(championId) {
+	var champID = championId;
+	var champName = "none";
+	var totalPlays = 0;
+	var totalWins = 0;
+	var totalLosses = 0;
+	var winRate = 0;
+	var kills = 0;
+	var death = 0;
+	var kda = 0;
+	var gol = 0;
 }
 
 // rate at which server pulls challenge API data from riot (in ms)
@@ -33,6 +36,11 @@ const dataUpdateRate = 10000; // 1000 is one second
 
 // this cycle manages the server updating the URF data.
 URFManager.queryCycle = setInterval(function () {
+
+	// don't update data if not all of the set up data for the champions array is filled
+	if(championsDefined == false) {
+		return;
+	}
 
 	var that = this; // hacky way to refer to the current obj in "async" calls
 
@@ -45,15 +53,35 @@ URFManager.queryCycle = setInterval(function () {
 		// console.log("URF Data success: " + matchArraydata);
 
 		var innerSuccessCallBack = function(matchData) {
+			matchData = JSON.parse(matchData);
 			// TODO: update the URFData according to the match's data
 			// console.log("Inner success. " + matchData);
-			var username;
-			for(username in matchData) {
+			var firstItem;
+			for(firstItem in matchData) {
 				// gets the first element of the json
 				break;
 			}
-			console.log("Summoner id: " + matchData[username].id);
+			// console.log("First item: " + firstItem);
+			// console.log("Match first item: " + matchData[firstItem]);
+			// console.log("Match participants: " + matchData[firstItem].participants);
+			// console.log("Raw participants: " + JSON.stringify(matchData.participants));
+			for(player in matchData.participants) {
+				var thisPlayer = matchData.participants[player];
 
+				that.URFData.gamesAnalyzed++;
+				if(that.URFData.champions[thisPlayer.championId] == undefined) {
+					that.URFData.champions[thisPlayer.championId] = new champion(thisPlayer.championId);
+				}
+				that.URFData.champions[thisPlayer.championId].
+				// console.log("Object in: " + JSON.stringify(matchData.participants[object]));
+				// console.log("Stats: " + JSON.stringify(matchData.participants[object].stats));
+				console.log("champID: " + matchData.participants[object].championId);
+				console.log("Is winner: " + matchData.participants[object].stats.winner);
+				console.log("Kills: " + matchData.participants[object].stats.kills);
+				console.log("Kills: " + matchData.participants[object].stats.deaths);
+				console.log("CS: " + matchData.participants[object].stats.minionsKilled);
+				console.log("Gold: " + matchData.participants[object].stats.goldEarned);
+			}
 		}
 
 		var matchArray = JSON.parse(matchArraydata);
