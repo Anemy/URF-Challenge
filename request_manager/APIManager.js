@@ -102,7 +102,7 @@ APIManager.makeRequest = function (url, callback, errorCallback) {
 // used to call API for summoner data
 APIManager.getSummonerData = function (summonerName, callback, errorCallback) {
 	// console.log("retrieving summoner Data");
-	var summonerData = this.makeRequest("https://na.api.pvp.net/api/lol/" + this.region + "/v1.4/summoner/by-name/" + summonerName + "?api_key=" + this.API_Key , callback, errorCallback);
+	summonerData = this.makeRequest("https://na.api.pvp.net/api/lol/" + this.region + "/v1.4/summoner/by-name/" + summonerName + "?api_key=" + this.API_Key , callback, errorCallback);
 	// console.log("Returning data: " + summonerData);
 	// return summonerData;
 	
@@ -110,16 +110,16 @@ APIManager.getSummonerData = function (summonerName, callback, errorCallback) {
 
 // gets a summoner's most recent 10 games. (gameIDs)
 APIManager.getMatchHistory = function (summonerID, callback, errorCallback) {
-	var matchHistoryData = this.makeRequest("https://na.api.pvp.net/api/lol/" + this.region + "/v2.2/matchhistory/" + summonerID + "?api_key="+this.API_Key, callback, errorCallback);
+	matchHistoryData = this.makeRequest("https://na.api.pvp.net/api/lol/" + this.region + "/v2.2/matchhistory/" + summonerID + "?api_key="+this.API_Key, callback, errorCallback);
 }
 
 // Retrieves individual match's data
 APIManager.getMatchData = function (matchID, callback, errorCallback) {
-	var challengerAPIData = this.makeRequest('https://na.api.pvp.net/api/lol/na/v2.2/match/' + matchID + '?includeTimeline=false&api_key=' + this.API_Key, callback, errorCallback);
+	challengerAPIData = this.makeRequest('https://na.api.pvp.net/api/lol/na/v2.2/match/' + matchID + '?includeTimeline=false&api_key=' + this.API_Key, callback, errorCallback);
 }
 
 APIManager.getChallengeAPI = function (beginDate, callback, errorCallback) {
-	var challengerAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + beginDate + "&api_key=" + this.API_Key, callback, errorCallback);
+	challengerAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + beginDate + "&api_key=" + this.API_Key, callback, errorCallback);
 }
 
 // used to get the Challenge API acceptable time A DAY AGO
@@ -142,6 +142,7 @@ var getTruncatedFiveMinTime = function(timeVar) {
     return timeVar.getTime();
 }
 
+// calls the API challenge with a time stamp of one day ago grounded to the nearest 5 minute
 APIManager.getMostRecentChallengeAPI = function (callback, errorCallback) {
 
 	var currentTime = new Date(); // .parseDate();
@@ -152,7 +153,12 @@ APIManager.getMostRecentChallengeAPI = function (callback, errorCallback) {
 
 	// console.log("Request: https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + pullTime + "&api_key=" + this.API_Key);
 
-	var challengeAPIData = this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + pullTime + "&api_key=" + this.API_Key, callback, errorCallback);
+	this.makeRequest("https://na.api.pvp.net/api/lol/na/v4.1/game/ids?beginDate=" + pullTime + "&api_key=" + this.API_Key, callback, errorCallback);
+}
+
+// used to fetch the static data of all champions in the game (names etc.)
+APIManager.getAllChampionsData = function(callback, errorCallback) {
+	this.makeRequest("https://na.api.pvp.net/api/lol/static-data/na/v1.2/champion?api_key=" + this.API_Key, callback, errorCallback);
 }
 
 // TODO: 40 requests for summoner data is allowed per call. optomize (build up?)

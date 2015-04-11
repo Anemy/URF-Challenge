@@ -6,6 +6,7 @@ var router = express.Router();
 
 var APIManager = require('../request_manager/APIManager.js');
 var URFManager = require('../request_manager/URFManager.js');
+URFManager.start();
 
 /* GET player data */
 router.get('/playerData*', function(req, res, next) {
