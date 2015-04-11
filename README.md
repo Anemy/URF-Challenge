@@ -42,6 +42,6 @@ Returns the server's total compiled URF Data as JSON
 
 ### - GET  /playerData?name={summoner_name}
 
-Returns either server's total compiled URF Data as JSON
+Currently just returns the requested summoner's past 10 matches as JSON (under development)
 
 ###### Format:

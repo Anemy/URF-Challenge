@@ -120,10 +120,13 @@ URFManager.queryCycle = function() {
 					// console.log("Adding new data for champ: " + that.URFData.champions[thisPlayer.championId].champName +
 					// 			" totalPlays: " + that.URFData.champions[thisPlayer.championId].totalPlays);
 
+					// console.log("Is a winner: "+thisPlayer.winner);
 					if(thisPlayer.stats.winner == true) {
+						// console.log("Win time!");
 						that.URFData.champions[thisPlayer.championId].totalWins ++;
 					}
 					else {
+						// console.log("Lose time!");
 						that.URFData.champions[thisPlayer.championId].totalLosses ++;
 					}
 

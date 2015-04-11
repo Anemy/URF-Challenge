@@ -60,15 +60,6 @@ router.get('/URFData', function(req, res, next) {
 
 	// sends back the API Manager's compiled URF stats
 	res.end(JSON.stringify(URFManager.URFData));
-
-	// // used when there's a succcessful request for URF data (it does more with the data)
-	// var callback = function (data) {
-	// 	// Calls to get the match history for the requested successful user
-	// 	APIManager.getMatchHistory(jsonData[username].id, innerCallback, errorCallback);
-	// }
-
-	// // requests the API manager to get the summoner data, tells it to use the above callbacks accordingly
-	// APIManager.getSummonerData(queryData.name, callback, errorCallback);
 }); 
 
 
