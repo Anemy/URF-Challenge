@@ -165,7 +165,7 @@ URFManager.queryCycle = function() {
 			var currentGameToAnalyze = 0;
 			// makes a call to analyze each game returned by the API challenge at a certain interval (to avoid overload)
 			var gameAnalyzeInterval = setInterval(function() {
-				console.log("Analyzing game: " + currentGameToAnalyze + " in match array of: " + matchArray.length);
+				// console.log("Analyzing game: " + currentGameToAnalyze + " in match array of: " + matchArray.length);
 
 				APIManager.getMatchData(matchArray[currentGameToAnalyze], innerSuccessCallBack, errorCallback);
 
