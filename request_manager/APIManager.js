@@ -84,7 +84,7 @@ APIManager.makeRequest = function (url, callback, errorCallback) {
 			if(response == undefined || response.statusCode == undefined) {
 				errorCallback("error");
 			}
-			if(response.statusCode == 500) {
+			else if(response.statusCode == 500) {
 				errorCallback("error");
 			}
 			else if(response.statusCode == 429) {
