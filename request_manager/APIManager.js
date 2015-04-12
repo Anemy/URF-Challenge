@@ -81,7 +81,9 @@ APIManager.makeRequest = function (url, callback, errorCallback) {
 		else {
 			// console.log("Response: " + JSON.stringify(response));
 			// console.log("Status code: " + response.statusCode);
-
+			if(response == undefined || response.statusCode == undefined) {
+				errorCallback("error");
+			}
 			if(response.statusCode == 500) {
 				errorCallback("error");
 			}
