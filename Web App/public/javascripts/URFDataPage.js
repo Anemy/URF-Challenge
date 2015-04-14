@@ -11,6 +11,8 @@ $(document).ready(function() {
 
 	currentlySearching = true;
 
+	console.log("Making request...");
+
 	// sets the Searching... animation running
 	searchingAnimation = setInterval(function() {
 		var dotsToAdd = "";
@@ -33,6 +35,8 @@ $(document).ready(function() {
 		"/URFData",
 		{},
 		function(data) {
+			// console.log("data callback");
+
 			currentlySearching = false;
 
 			var messageToDisplay = "Error!!!";
@@ -127,47 +131,17 @@ var displayTable = function () {
 
 var parseURFData = function (matchData) {
 	var parsedData = "";
-
-	// worked = false;
-	// make the variable matchArray contain the array of Matches
-	// for(matchArray in matchData) {
-	// 	worked = true;
-	// 	// console.log("Data: " + matchArray);
-	// 	// console.log("\n\nData 2: " + matchData[matchArray]);
-	// 	break;
-	// }
+	// console.log("data");
 
 	$('.gamesAnalyzed').text(matchData.gamesAnalyzed + " Games Analyzed.");
 
 	for(champion in matchData.champions) {
-		// worked = true;
-		// console.log("Data: " + matchArray);
 		// console.log("\n\nData 2: " + matchData[matchArray]);
-		// break;
 
-		// 
 		if(matchData.champions[champion] != "null" && matchData.champions[champion] != null) {
 			URFDataArray.push(matchData.champions[champion]);
 		}
 	}
 
 	displayTable();
-
-	// if(!worked) {
-	// 	$('.searchDescription').text("No match history found.");
-	// 	return;
-	// }
-
-	// for(var i = 0; i < matchData[matchArray].length; i++) {
-	// 	// queueType
-	// 	parsedData += "Match " + i + ": " + matchData[matchArray][i].queueType + "    |    \n";// matchData[matchArray]
-
-	// 	// parsedData += JSON.stringify(matchData[matchArray][0]);
-
-	// 	// break;
-	// }
-
-	// parsedData += matchArray[0];
-
-	// $('.resultText').text(parsedData);
 }
