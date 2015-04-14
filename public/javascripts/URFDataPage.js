@@ -70,6 +70,7 @@ $(document).ready(function() {
 
 var URFDataArray = [];
 var tableSortResponderAllowed = false;
+var descending = true;
 
 var displayTable = function () {
 	var htmlToAdd = "";
@@ -106,10 +107,18 @@ var displayTable = function () {
 
 	if(tableSortResponderAllowed == false) {
 		$('.tableColTitle').click(function(event) {
-			if(event.target.id == "winRate" || event.target.id == "plays" || event.target.id == "kda" || event.target.id == "avgGold" || event.target.id == "avgCS") {
+			// if(event.target.id == "championName") {
+			// 	URFDataArray.sort(function(a,b) {
+			// 		if(desending)
+			// 	}
+			// }
+			// else {
+			// 	URFDataArray.sort(function(a,b) {
+			// 		descending
+			// 	}
+			// }
 
-				displayTable();
-			}
+			// displayTable();
 		});
 	}
 
