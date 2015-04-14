@@ -8,7 +8,7 @@
     top: 0;
 
     width: 100%;
-    height: 100%;
+    // height: 100%;
 
     text-align: center; 
 
@@ -73,11 +73,11 @@
     .topBarWrapper {
         position: absolute;
         width: 100%;
-        height: 100%;
+        // height: 100%;
 
         text-align: center;  
 
-        z-index: -2;
+        z-index: 2;
 
         .topBar {
             margin-top: 1.7em;
@@ -105,28 +105,109 @@
     }
 
     .searching {
-    	position: absolute;
-    	width: 100%;
-    	height: 20%;
-    	top: 14em;
-    	text-align: center;
+        position: absolute;
+        width: 100%;
+        height: 20%;
+        top: 14em;
+        text-align: center;
 
-    	color: $accent2;
+        color: $accent2;
+
+        z-index: 100;
     }
 
-    .dataSection {
+    .dataSectionOffset {
     	position: absolute;
 
-    	width: 100%;
-    	height: 20%;
+    	height: 100%;
+    	left: 50%; 
 
-    	top: 6em;
+    	top: 0;
     	text-align: center;
 
-    	.gamesAnalyzed {
-    		color: $accent2;
+	    .dataSection {
+	    	position: absolute;
 
-    		font-size: 2em;
-    	}
-    }
+	    	width: 900px;
+	    	// height: 100%;
+	    	left: -450px;
+
+	    	top: 6em;
+	    	text-align: center;
+
+	    	background-color: white;
+	    	border-radius: 4px;
+	    	box-shadow: 0 0 2px $medium;
+
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+
+
+	    	.gamesAnalyzed {
+                position: absolute;
+	    		right: 5%;
+	    		top: 24px;
+
+	    		font-size: 18px;
+                color: $peter-river;
+	    	}
+
+            .tableTitle {
+                color: $midnight-blue;
+
+                font-size: 24px;
+                margin-top: 20px;
+            }
+
+	    	.champTable {
+	    		z-index: 1;
+	    		color: $dark;
+
+                margin-top: 12px;
+
+	    		width: 100%;
+                table {
+                    width: 90%;
+                    margin-left: 5%;
+
+    	    		tr {
+                        .tableColTitle {
+                            color: $midnight-blue;
+                        }
+                        .tableColTitle:hover {
+                            cursor: pointer;
+                            color: $belize-hole;
+                        }
+                        .tableColTitle:active {
+                            color: $peter-river;
+                        }
+
+                        .champImg {
+                            position: absolute;
+                            left: 30px;
+
+                            padding-top: 3px;
+
+                            width: 26px;
+                            height: 26px;
+                        }
+    	    			width: 100%;
+
+                        // border: 1px solid $dark;
+                        border-bottom: 1px solid $light; 
+
+                        td {
+                            font-size: 20px;
+                        }
+    	    		}
+
+                    tr > td
+                    {
+                      padding-bottom: 8px;
+                      padding-top: 8px;
+                    }
+                }
+	    	}
+	    }
+	}
 }

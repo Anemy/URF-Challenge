@@ -58,7 +58,8 @@ $(document).ready(function() {
 			searchingAnimation = null;
 
 			// sets the text of the description to the response
-			$('.searching').text(data);//messageToDisplay);
+			$('.searching').text(messageToDisplay);//messageToDisplay);
+			$('.searching').css('display', 'none');
 
 			// call to parse the returned match data
 			parseURFData(JSON.parse(data));
@@ -66,6 +67,54 @@ $(document).ready(function() {
 		}
 	);
 });
+
+var URFDataArray = [];
+var tableSortResponderAllowed = false;
+
+var displayTable = function () {
+	var htmlToAdd = "";
+
+	htmlToAdd += "<table>";
+
+	htmlToAdd += "<tr>";
+	htmlToAdd += '<td></td>';
+	htmlToAdd += '<td><a id="championName" class="tableColTitle">Champion</a></td>';
+	htmlToAdd += '<td><a id="winRate" class="tableColTitle">Win Ratio</a></td>';
+	htmlToAdd += '<td><a id="plays" class="tableColTitle">Plays</a></td>';
+	htmlToAdd += '<td><a id="kda" class="tableColTitle">Kill/Death</a></td>';
+	htmlToAdd += '<td><a id="avgGold" class="tableColTitle">Average Gold</a></td>';
+	htmlToAdd += '<td><a id="avgCS" class="tableColTitle">Average CS</a></td>';
+	htmlToAdd += "</tr>";
+
+	for(var champion = 0; champion < URFDataArray.length; champion++) {
+		htmlToAdd += "<tr>";
+		// console.log("This champ: " + matchData.champions[champion].champName);
+		// add image here
+		htmlToAdd += '<td class="champImg"><img class="champImg" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/' + URFDataArray[champion].champName + '.png"/></td>';
+		htmlToAdd += '<td style="text-align: left; padding-left: 52px;">' + URFDataArray[champion].champName + "</td>";
+		htmlToAdd += '<td>' + URFDataArray[champion].winRate + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].totalPlays + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].kda + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].averageGold + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].averageCS + '</td>';
+		
+		htmlToAdd += '</tr>';
+	}
+
+	htmlToAdd += "</table>";
+	$('.champTable').html(htmlToAdd);
+
+	if(tableSortResponderAllowed == false) {
+		$('.tableColTitle').click(function(event) {
+			if(event.target.id == "winRate" || event.target.id == "plays" || event.target.id == "kda" || event.target.id == "avgGold" || event.target.id == "avgCS") {
+
+				displayTable();
+			}
+		});
+	}
+
+	tableSortResponderAllowed = true;
+}
 
 var parseURFData = function (matchData) {
 	var parsedData = "";
@@ -80,6 +129,20 @@ var parseURFData = function (matchData) {
 	// }
 
 	$('.gamesAnalyzed').text(matchData.gamesAnalyzed + " Games Analyzed.");
+
+	for(champion in matchData.champions) {
+		// worked = true;
+		// console.log("Data: " + matchArray);
+		// console.log("\n\nData 2: " + matchData[matchArray]);
+		// break;
+
+		// 
+		if(matchData.champions[champion] != "null" && matchData.champions[champion] != null) {
+			URFDataArray.push(matchData.champions[champion]);
+		}
+	}
+
+	displayTable();
 
 	// if(!worked) {
 	// 	$('.searchDescription').text("No match history found.");
