@@ -18,8 +18,8 @@ $wisteria: #8E44AD;
 
 // Yellows
 $sunflower: #F1C40F;
-
-// Oranges
+ 
+// Oranges 
 $orange: #F39C12;
 $carrot: #E67E22;
 $pumpkin: #D35400;
@@ -43,13 +43,16 @@ $dark: #290E03;
 $accent-light: #3498DB;
 $accent: #e74c3c;// #3498DB;// #F39C12;
 $accent-dark: #3498DB;
-$highlight: #4c82ef;
+$accent1: #FF3B30;// #FF5E3A;
+$accent2: #FF2D55;// #FF2A68;
+$highlight: #4c82ef; 
 
 // Includes - add extra scss files here
 @import "reset";
 @import "fonts";
 @import "landingPage";
 @import "about";
+@import "URFStatsPage";
 
 
 a, a:visited, a:hover, a:active {

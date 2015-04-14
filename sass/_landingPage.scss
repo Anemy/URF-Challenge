@@ -4,7 +4,7 @@ This is the style sheet for the main landing page of the website
 */
 
 .landingPage {
-    background-color: white;
+    background-color: #F5F5F5;// white;
 
     // background: url('/images/headphones.jpg') no-repeat scroll center center transparent;
     // background: url('/images/headphones.jpg') no-repeat scroll center top/cover transparent;
@@ -27,7 +27,7 @@ This is the style sheet for the main landing page of the website
 
     .accentText {
         color: $accent;
-    }
+    } 
 
     .whiteText {
         color: white;
@@ -38,7 +38,11 @@ This is the style sheet for the main landing page of the website
     }
 
     .redBackground {
-        background-color: $accent;
+        background: -webkit-linear-gradient($accent1, $accent2); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient($accent1, $accent2); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient($accent1, $accent2); /* For Firefox 3.6 to 15 */
+        background: linear-gradient($accent1, $accent2); /* Standard syntax */
+        // background-color: $accent;
         // border-bottom: 1px solid $dark;
         box-shadow: 0px 0px 4px black;
 
@@ -47,7 +51,7 @@ This is the style sheet for the main landing page of the website
         left: 0;
 
         width: 100%;
-        height: 16em;
+        height: 4.7em;
         z-index: -3;
     }
 
@@ -71,19 +75,28 @@ This is the style sheet for the main landing page of the website
         );
     }
 
-    .teeeeeeeeeemo {
+    .teemoWrap {
         position: absolute;
-        bottom: 0;
-        right: 0;
+        top: 8em;
+        left: 50%;
 
-        background: url('/images/evilteemo.png');
-        background-size: 16em;
+        height: 0;
+        width: 0;
+
+        text-align: center;
+
+        .teeeeeeeeeemo {
+            position: absolute;
+            top: 0;
+            left: -2em;
+
+            background: url('/images/evilteemo.png');
+            background-size: 4em;
 
 
-        height: 16em;
-        width: 16em;;
-
-        // z-index: -2;
+            height: 4em;
+            width: 4em;
+        }
     }
 
     .topBarWrapper {
@@ -96,7 +109,7 @@ This is the style sheet for the main landing page of the website
         z-index: -2;
 
         .topBar {
-            margin-top: 3em;
+            margin-top: 1.7em;
 
             .topOption {
                 display: inline-block;
@@ -124,11 +137,13 @@ This is the style sheet for the main landing page of the website
 
         position: absolute;
         left: 0;
-        top: 10em;
+        top: 12em;
 
         width: 100%;
 
         z-index: -1;
+
+        color: $accent1;
 
         .steps {
             position: absolute;
@@ -165,7 +180,7 @@ This is the style sheet for the main landing page of the website
                 outline: none;
                 border: none;
 
-                border: 1px solid $light;
+                border: 1px solid #DDDDDD;// $light;
                 border-radius: 2px 0px 0px 2px;
 
                 height: 22px;
@@ -176,6 +191,7 @@ This is the style sheet for the main landing page of the website
             }
             .searchBox:focus {
                 box-shadow: 0 0 2px $highlight;
+                // box-shadow: 0 0 2px $accent2;
             }
 
             .searchButton {

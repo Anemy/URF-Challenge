@@ -3,6 +3,7 @@
 var express = require('express');
 var url = require('url');
 var router = express.Router();
+var request = require('request');
 
 var APIManager = require('../request_manager/APIManager.js');
 var URFManager = require('../request_manager/URFManager.js');
@@ -51,17 +52,56 @@ router.get('/playerData*', function(req, res, next) {
 /* GET URF Stats data */
 router.get('/URFData', function(req, res, next) {
 
-	// used when there's an error. Just returns whatever and doesn't try to do more things.
-	var errorCallback = function (data) {
-		res.end(data);
+	// REQUESTS EITHER THIS OWN DATA OR THE DATA ON THE SERVER WHICH HAS BEEN RUNNING LONGER (THE ELSE)
+	if(false) {
+		// used when there's an error. Just returns whatever and doesn't try to do more things.
+		var errorCallback = function (data) {
+			res.end(data);
+		}
+
+		// console.log("Sending them: " + JSON.stringify(URFManager.URFData));
+
+		// sends back the API Manager's compiled URF stats
+		res.end(JSON.stringify(URFManager.URFData));
 	}
+	else {
+		var callback = function(data) {
+			res.end(data);
+		}
 
-	// console.log("Sending them: " + JSON.stringify(URFManager.URFData));
-
-	// sends back the API Manager's compiled URF stats
-	res.end(JSON.stringify(URFManager.URFData));
+		request( "http://vowb.net:4000/URFData" , function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				callback(body);
+			}
+			else {
+				// console.log("Response: " + JSON.stringify(response));
+				// console.log("Status code: " + response.statusCode);
+				if(response == undefined || response.statusCode == undefined) {
+					callback("error");
+				}
+				else if(response.statusCode == 500) {
+					callback("error");
+				}
+				else if(response.statusCode == 429) {
+					// console.log("Overload their side.");
+					callback("overload");
+				}
+				else if(response.statusCode == 404) {
+					callback("not found");
+				}
+				else {
+					callback("error");
+				}
+			}
+		});
+	}
 }); 
 
+/* GET URF page */
+router.get('/URF', function(req, res, next) {
+
+	res.render('URFStats', {title: 'League Nemesis URF Stats'});
+}); 
 
 /* GET about page */
 router.get('/about', function (req, res, next) {

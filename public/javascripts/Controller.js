@@ -78,6 +78,7 @@ $(document).ready(function() {
 
 		// does a get request to the server for URF data
 		$.get(
+			// "http://vowb.net:4000/URFData",
 			"/URFData",
 			{},
 			function(data) {

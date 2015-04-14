@@ -1,6 +1,7 @@
 extends layout
 block content
-	.aboutPage
+	script(defer="defer" src="/javascripts/URFDataPage.js")
+	.URFStatsPage
 		.redBackground
 		.redPattern
 		.teeeeeeeeeemo
@@ -11,4 +12,8 @@ block content
 				a.topOption(href="/")#nemesisTop.
 					Nemesis
 				a.topOption(href="/URF").
-					URF Stats 
+					URF Stats
+		.searching.
+			Searching...
+		.dataSection
+			.gamesAnalyzed
