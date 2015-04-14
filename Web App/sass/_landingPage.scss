@@ -1,0 +1,237 @@
+/* 
+This is the style sheet for the main landing page of the website 
+@author Rhys Howell
+*/
+
+.landingPage {
+    background-color: #F5F5F5;// white;
+
+    // background: url('/images/headphones.jpg') no-repeat scroll center center transparent;
+    // background: url('/images/headphones.jpg') no-repeat scroll center top/cover transparent;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    text-align: center; 
+
+    // font-family: "Cabin";
+    font-family: 'MuseoSans300', sans-serif;
+
+    color: white;
+
+    z-index: -3;
+
+    .accentText {
+        color: $accent;
+    } 
+
+    .whiteText {
+        color: white;
+    }
+
+    .blackText {
+        color: black;
+    }
+
+    .redBackground {
+        background: -webkit-linear-gradient($accent1, $accent2); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient($accent1, $accent2); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient($accent1, $accent2); /* For Firefox 3.6 to 15 */
+        background: linear-gradient($accent1, $accent2); /* Standard syntax */
+        // background-color: $accent;
+        // border-bottom: 1px solid $dark;
+        box-shadow: 0px 0px 4px black;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 4.7em;
+        z-index: -3;
+    }
+
+    .redPattern {
+        display: none;
+
+        position: absolute;
+        top: 16em;
+        left: 0;
+
+        width: 100%;
+        height: 8px;
+        z-index: -3;
+
+        background: repeating-linear-gradient(
+          45deg,
+          $accent,
+          $accent 1px,//10
+          $dark 1px,//10
+          $dark 2px
+        );
+    }
+
+    .teemoWrap {
+        position: absolute;
+        top: 8em;
+        left: 50%;
+
+        height: 0;
+        width: 0;
+
+        text-align: center;
+
+        .teeeeeeeeeemo {
+            position: absolute;
+            top: 0;
+            left: -2em;
+
+            background: url('/images/evilteemo.png');
+            background-size: 4em;
+
+
+            height: 4em;
+            width: 4em;
+        }
+    }
+
+    .topBarWrapper {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        text-align: center;  
+
+        z-index: -2;
+
+        .topBar {
+            margin-top: 1.7em;
+
+            .topOption {
+                display: inline-block;
+                margin-left: 20px;
+                margin-right: 20px;
+
+                font-size: 16px;
+
+                padding-bottom: 4px;
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+            .topOption:hover {
+                border-bottom: 2px solid white;
+                cursor: pointer;
+            }
+
+            #nemesisTop {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .middleArea {
+
+        position: absolute;
+        left: 0;
+        top: 12em;
+
+        width: 100%;
+
+        z-index: -1;
+
+        color: $accent1;
+
+        .steps {
+            position: absolute;
+
+            height: 300px;
+            width: 300px;
+
+            top: 18%;
+            left: 50%;
+
+            // background: url('/images/nemesis.png') no-repeat scroll center center transparent;
+            // background: url('/images/nemesis.png') no-repeat scroll center top/cover transparent;
+
+            z-index: -1;
+        }
+
+        .horns {
+            width: 15%;
+            height: 40px;
+            z-index: -1;
+
+            background: url('/images/nemesis.png') no-repeat scroll center center transparent;
+            background: url('/images/nemesis.png') no-repeat scroll center top/cover transparent;
+        }
+        .searchTitle {
+            font-size: 24px;
+
+            margin-bottom: 8px;
+
+            font-family: 'MuseoSans500', sans-serif;
+        }
+        #searchForm {
+            .searchBox {
+                outline: none;
+                border: none;
+
+                border: 1px solid #DDDDDD;// $light;
+                border-radius: 2px 0px 0px 2px;
+
+                height: 22px;
+                width: 300px;
+                padding-left: 6px;
+
+                font-size: 12px;
+            }
+            .searchBox:focus {
+                box-shadow: 0 0 2px $highlight;
+                // box-shadow: 0 0 2px $accent2;
+            }
+
+            .searchButton {
+                border: none;
+                outline: none;
+
+                background: none;
+                background-color: white;
+                border: 1px solid $light;
+                border-radius: 0px 4px 4px 0px;
+
+                height: 26px;
+                font-size: 12px;
+                width: 60px;
+            }
+            .searchButton:hover {
+                cursor: pointer;
+                box-shadow: inset 0px 1px 2px 0px $light;
+            }
+            .searchButton:active {
+                box-shadow: inset 0px 1px 2px 0px $medium;
+            }
+        }
+        .searchDescription {
+            margin-top: 14px;
+            font-size: 14px;
+
+            // color: black;
+        }
+    }
+
+    .bodyArea {
+        position:absolute;
+        top: 19em;
+        left: 0;
+
+        width: 100%;
+
+        .resultText {
+            color: black;
+        }
+    }
+}
