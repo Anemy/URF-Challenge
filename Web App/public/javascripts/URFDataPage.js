@@ -122,7 +122,7 @@ var displayTable = function () {
 		htmlToAdd += '<td>' + (100*URFDataArray[champion].winRate).toPrecision(4) + '</td>';
 		htmlToAdd += '<td>' + URFDataArray[champion].totalPlays + '</td>';
 		htmlToAdd += '<td>' + URFDataArray[champion].kda.toPrecision(4) + '</td>';
-		htmlToAdd += '<td>' + URFDataArray[champion].averageGold.toPrecision(7) + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].averageGold.toPrecision(6) + '</td>';
 		htmlToAdd += '<td>' + URFDataArray[champion].averageCS.toPrecision(4) + '</td>';
 		
 		htmlToAdd += '</tr>';
