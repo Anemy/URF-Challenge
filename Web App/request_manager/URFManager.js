@@ -34,8 +34,10 @@ var champion = function(championId) {
 	this.winRate = 0;
 
 	this.kills = 0;
+	this.assists = 0;
 	this.deaths = 0;
 	this.averageKills = 0.0;
+	this.averageAssists = 0.0;
 	this.averageDeaths = 0.0;
 	this.kda = 0.0;
 
@@ -136,6 +138,7 @@ URFManager.queryCycle = function() {
 
 					// update total stats
 					that.URFData.champions[thisPlayer.championId].kills += thisPlayer.stats.kills;
+					that.URFData.champions[thisPlayer.championId].assists += thisPlayer.stats.assists;
 					that.URFData.champions[thisPlayer.championId].deaths += thisPlayer.stats.deaths;
 					that.URFData.champions[thisPlayer.championId].cs += thisPlayer.stats.minionsKilled;
 					that.URFData.champions[thisPlayer.championId].gold += thisPlayer.stats.goldEarned;
@@ -147,13 +150,16 @@ URFManager.queryCycle = function() {
 																				that.URFData.champions[thisPlayer.championId].totalPlays;
 
 					// kill / death
-					that.URFData.champions[thisPlayer.championId].kda = that.URFData.champions[thisPlayer.championId].kills / 
+					that.URFData.champions[thisPlayer.championId].kda = (that.URFData.champions[thisPlayer.championId].kills
+																				+ that.URFData.champions[thisPlayer.championId].assists) / 
 																				that.URFData.champions[thisPlayer.championId].deaths;
 
 					// kill + death avg
 					that.URFData.champions[thisPlayer.championId].averageKills = that.URFData.champions[thisPlayer.championId].kills / 
 																				that.URFData.champions[thisPlayer.championId].totalPlays;
 					that.URFData.champions[thisPlayer.championId].averageDeaths = that.URFData.champions[thisPlayer.championId].deaths / 
+																				that.URFData.champions[thisPlayer.championId].totalPlays;
+					that.URFData.champions[thisPlayer.championId].averageAssists = that.URFData.champions[thisPlayer.championId].assists / 
 																				that.URFData.champions[thisPlayer.championId].totalPlays;
 
 					// gold avg
