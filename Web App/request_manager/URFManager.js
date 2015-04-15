@@ -81,7 +81,7 @@ URFManager.start = function() {
 }
 
 // rate at which server pulls challenge API data from riot (in ms)
-const dataUpdateRate = 20000;// 1010 * 60 * 5; // 1000 is one second (so we do every five minutes so we dget new challenge games)
+const dataUpdateRate = 30000;// 1010 * 60 * 5; // 1000 is one second (so we do every five minutes so we dget new challenge games)
 // const amountOfGamesAnalyzedPerCall = 10;
 const gameAnalyzedPerCallRate = 3000; // delay between each call to analyze a game
 
@@ -193,7 +193,7 @@ URFManager.queryCycle = function() {
 
 		APIManager.getChallengeAPI(nextTimeToGet, successCallBack, errorCallback);
 
-		that.lastRetrievedTime += 5 * 1000 * 60;
+		that.lastRetrievedTime += 300;
 
 		if(that.lastRetrievedTime > APISearchEndTime) {
 
