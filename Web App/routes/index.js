@@ -7,7 +7,7 @@ var request = require('request');
 
 var APIManager = require('../request_manager/APIManager.js'); 
 var URFManager = require('../request_manager/URFManager.js');
-URFManager.start();
+// URFManager.start();
 
 /* GET player data */
 router.get('/playerData*', function(req, res, next) {
@@ -53,7 +53,7 @@ router.get('/playerData*', function(req, res, next) {
 router.get('/URFData', function(req, res, next) {
 
 	// REQUESTS EITHER THIS OWN DATA OR THE DATA ON THE SERVER WHICH HAS BEEN RUNNING LONGER (THE ELSE)
-	if(true) {
+	if(false) {
 		// used when there's an error. Just returns whatever and doesn't try to do more things.
 		var errorCallback = function (data) {
 			res.end(data);
@@ -97,12 +97,6 @@ router.get('/URFData', function(req, res, next) {
 	}
 }); 
 
-/* GET Nemesis page */
-router.get('/nemesis', function(req, res, next) {
-
-	res.render('index', {title: 'URF Statistics League'});
-}); 
-
 /* GET about page */
 router.get('/about', function (req, res, next) {
 
@@ -110,11 +104,17 @@ router.get('/about', function (req, res, next) {
 });
 
 /* GET home page. */
-router.get('/*', function (req, res, next) {
+router.get('/URF', function (req, res, next) {
 	// var queryData = url.parse(req.url, true).query;
 
-    res.render('URFStats', { title: 'League URFStatistics'});
+    res.render('URFStats', { title: 'URF Challenge Statistics'});
 });
+
+/* GET Nemesis page */
+router.get('/', function(req, res, next) {
+
+	res.render('index', {title: 'League Nemesis'});
+}); 
 
 module.exports = router;
  
