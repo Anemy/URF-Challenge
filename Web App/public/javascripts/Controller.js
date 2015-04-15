@@ -19,7 +19,7 @@ $(document).ready(function() {
 		console.log("Search for : " + searchName);
 		currentlySearching = true;
 
-		$('.resultText').text("");
+		$('.resultText').text(""); 
 
 		// sets the Searching... animation running
 		searchingAnimation = setInterval(function() {
@@ -39,48 +39,9 @@ $(document).ready(function() {
 		}, 250);
 
 		// does a get request to the server for a specified summoner
-		// $.get(
-		// 	"/playerData",
-		// 	{name : searchName},
-		// 	function(data) {
-		// 		currentlySearching = false;
-
-		// 		var messageToDisplay = "Error!!!";
-		// 		var searchSuccess = false;
-
-		// 		// data has data from the server as a response to summoner name
-		// 		if(data == "error") {
-		// 			messageToDisplay = "Server error.";
-		// 		}
-		// 		else if(data == "not found") {
-		// 			messageToDisplay = "Summoner not found.";
-		// 		}
-		// 		else if(data == "overload") {
-		// 			messageToDisplay = "Too many summoners are refreshing. Please try again.";
-		// 		}
-		// 		else {
-		// 			$('.searchBox').val("");
-		// 			messageToDisplay = "Success! Please choose a match:";
-					
-		// 			searchSuccess = true;
-		// 		}
-
-		// 		clearInterval(searchingAnimation);
-		// 		searchingAnimation = null;
-
-		// 		// sets the text of the description to the response
-		// 		$('.searchDescription').text(messageToDisplay);
-
-		// 		// call to parse the returned match data
-		// 		parseMatchData(JSON.parse(data));
-		// 	}
-		// );
-
-		// does a get request to the server for URF data
 		$.get(
-			// "http://vowb.net:4000/URFData",
-			"/URFData",
-			{},
+			"/playerData",
+			{name : searchName},
 			function(data) {
 				currentlySearching = false;
 
@@ -99,7 +60,7 @@ $(document).ready(function() {
 				}
 				else {
 					$('.searchBox').val("");
-					messageToDisplay = "Success! Please choose a match:";
+					messageToDisplay = "Here are your nemesis stats:";
 					
 					searchSuccess = true;
 				}
@@ -110,11 +71,8 @@ $(document).ready(function() {
 				// sets the text of the description to the response
 				$('.searchDescription').text(messageToDisplay);
 
-
-
 				// call to parse the returned match data
-				// parseMatchData(JSON.parse(data));
-				$('.resultText').text(data);
+				parseMatchData(JSON.parse(data));
 			}
 		);
 
@@ -150,5 +108,6 @@ var parseMatchData = function (matchData) {
 
 	// parsedData += matchArray[0];
 
-	$('.resultText').text(parsedData);
+	$('.resultText').text(JSON.stringify(matchData));
+	// $('.resultText').text(parsedData);
 }

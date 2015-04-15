@@ -1,14 +1,17 @@
 // Styling for the URF Stats webpage sass
 
 .URFStatsPage {
-	background-color: #F5F5F5;
+	// background-color: #AAAAAA;
+    /* Background pattern from subtlepatterns.com */
+    // background: url('/images/white_wall_hash.png');
+    background: url('/images/white_wall_hash.png');
 
     position: absolute;
     left: 0;
     top: 0;
 
     width: 100%;
-    // height: 100%;
+    height: 100%;
 
     text-align: center; 
 
@@ -128,9 +131,8 @@
 	    .dataSection {
 	    	position: absolute;
 
-	    	width: 900px;
-	    	// height: 100%;
-	    	left: -450px;
+	    	width: 1000px;
+	    	left: -500px;
 
 	    	top: 6em;
 	    	text-align: center;
@@ -167,8 +169,8 @@
 
 	    		width: 100%;
                 table {
-                    width: 90%;
-                    margin-left: 5%;
+                    width: 94%;
+                    margin-left: 3%;
 
     	    		tr {
                         .tableColTitle {
@@ -186,10 +188,12 @@
                             position: absolute;
                             left: 30px;
 
-                            padding-top: 3px;
+                            padding-top: 2px;
 
-                            width: 26px;
-                            height: 26px;
+                            width: 28px;
+                            height: 28px;
+
+                            border-radius: 50%;
                         }
     	    			width: 100%;
 

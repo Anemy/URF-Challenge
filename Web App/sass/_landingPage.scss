@@ -4,11 +4,12 @@ This is the style sheet for the main landing page of the website
 */
 
 .landingPage {
-    background-color: #F5F5F5;// white;
+    // background-color: #F5F5F5;// white;
+    background: url('/images/white_wall_hash.png'); 
 
     // background: url('/images/headphones.jpg') no-repeat scroll center center transparent;
     // background: url('/images/headphones.jpg') no-repeat scroll center top/cover transparent;
-
+ 
     position: absolute;
     left: 0;
     top: 0;
@@ -16,7 +17,7 @@ This is the style sheet for the main landing page of the website
     width: 100%;
     height: 100%;
 
-    text-align: center; 
+    text-align: center;  
 
     // font-family: "Cabin";
     font-family: 'MuseoSans300', sans-serif;

@@ -5,7 +5,7 @@ var url = require('url');
 var router = express.Router();
 var request = require('request');
 
-var APIManager = require('../request_manager/APIManager.js');
+var APIManager = require('../request_manager/APIManager.js'); 
 var URFManager = require('../request_manager/URFManager.js');
 URFManager.start();
 
@@ -33,7 +33,7 @@ router.get('/playerData*', function(req, res, next) {
 				// gets the first element of the json
 				break;
 			}
-			console.log("Summoner id: " + jsonData[username].id);
+			// console.log("Summoner id: " + jsonData[username].id);
 
 			var innerCallback = function (innerData) {
 				res.status(200);
@@ -53,7 +53,7 @@ router.get('/playerData*', function(req, res, next) {
 router.get('/URFData', function(req, res, next) {
 
 	// REQUESTS EITHER THIS OWN DATA OR THE DATA ON THE SERVER WHICH HAS BEEN RUNNING LONGER (THE ELSE)
-	if(false) {
+	if(true) {
 		// used when there's an error. Just returns whatever and doesn't try to do more things.
 		var errorCallback = function (data) {
 			res.end(data);
