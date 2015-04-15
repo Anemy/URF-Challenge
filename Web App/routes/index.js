@@ -97,23 +97,23 @@ router.get('/URFData', function(req, res, next) {
 	}
 }); 
 
-/* GET URF page */
-router.get('/URF', function(req, res, next) {
+/* GET Nemesis page */
+router.get('/nemesis', function(req, res, next) {
 
-	res.render('URFStats', {title: 'League Nemesis URF Stats'});
+	res.render('index', {title: 'URF Statistics League'});
 }); 
 
 /* GET about page */
 router.get('/about', function (req, res, next) {
 
-	res.render('about', {title: 'League Nemesis About'});
+	res.render('about', {title: 'URF Challenge About'});
 });
 
 /* GET home page. */
 router.get('/*', function (req, res, next) {
 	// var queryData = url.parse(req.url, true).query;
 
-    res.render('index', { title: 'League Nemesis'});
+    res.render('URFStats', { title: 'League URFStatistics'});
 });
 
 module.exports = router;

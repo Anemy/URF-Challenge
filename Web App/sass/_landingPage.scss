@@ -22,7 +22,7 @@ This is the style sheet for the main landing page of the website
     // font-family: "Cabin";
     font-family: 'MuseoSans300', sans-serif;
 
-    color: white;
+    color: white; 
 
     z-index: -3;
 
@@ -129,7 +129,7 @@ This is the style sheet for the main landing page of the website
             }
 
             #nemesisTop {
-                font-size: 20px;
+                font-size: 18px;
             }
         }
     }
@@ -194,7 +194,7 @@ This is the style sheet for the main landing page of the website
                 box-shadow: 0 0 2px $highlight;
                 // box-shadow: 0 0 2px $accent2;
             }
-
+ 
             .searchButton {
                 border: none;
                 outline: none;

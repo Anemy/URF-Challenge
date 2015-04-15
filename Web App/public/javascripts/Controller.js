@@ -38,43 +38,50 @@ $(document).ready(function() {
 			}
 		}, 250);
 
+		setTimeout(function () {
+			clearInterval(searchingAnimation);
+			searchingAnimation = null;
+
+			$('.searchDescription').text("Sorry, this feature is under development, please check back in a week or two for your nemesis.");
+		}, 1000);
+
 		// does a get request to the server for a specified summoner
-		$.get(
-			"/playerData",
-			{name : searchName},
-			function(data) {
-				currentlySearching = false;
+		// $.get(
+		// 	"/playerData",
+		// 	{name : searchName},
+		// 	function(data) {
+		// 		currentlySearching = false;
 
-				var messageToDisplay = "Error!!!";
-				var searchSuccess = false;
+		// 		var messageToDisplay = "Error!!!";
+		// 		var searchSuccess = false;
 
-				// data has data from the server as a response to summoner name
-				if(data == "error") {
-					messageToDisplay = "Server error.";
-				}
-				else if(data == "not found") {
-					messageToDisplay = "Summoner not found.";
-				}
-				else if(data == "overload") {
-					messageToDisplay = "Too many summoners are refreshing. Please try again.";
-				}
-				else {
-					$('.searchBox').val("");
-					messageToDisplay = "Here are your nemesis stats:";
+		// 		// data has data from the server as a response to summoner name
+		// 		if(data == "error") {
+		// 			messageToDisplay = "Server error.";
+		// 		}
+		// 		else if(data == "not found") {
+		// 			messageToDisplay = "Summoner not found.";
+		// 		}
+		// 		else if(data == "overload") {
+		// 			messageToDisplay = "Too many summoners are refreshing. Please try again.";
+		// 		}
+		// 		else {
+		// 			$('.searchBox').val("");
+		// 			messageToDisplay = "Here are your nemesis stats:";
 					
-					searchSuccess = true;
-				}
+		// 			searchSuccess = true;
+		// 		}
 
-				clearInterval(searchingAnimation);
-				searchingAnimation = null;
+		// 		clearInterval(searchingAnimation);
+		// 		searchingAnimation = null;
 
-				// sets the text of the description to the response
-				$('.searchDescription').text(messageToDisplay);
+		// 		// sets the text of the description to the response
+		// 		$('.searchDescription').text(messageToDisplay);
 
-				// call to parse the returned match data
-				parseMatchData(JSON.parse(data));
-			}
-		);
+		// 		// call to parse the returned match data
+		// 		parseMatchData(JSON.parse(data));
+		// 	}
+		// );
 
 		return false;
 	});
