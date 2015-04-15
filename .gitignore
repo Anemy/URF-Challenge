@@ -19,6 +19,7 @@ DerivedData
 
 # OSX
 #
+.README.md.swp
 .DS_Store
 .AppleDouble
 .LSOverride
