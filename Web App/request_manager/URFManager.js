@@ -5,6 +5,8 @@ It helps to compile past games to create analytics
 
 */
 
+var fs = require('fs');
+
 // used for API calls
 var APIManager = require('../request_manager/APIManager.js');
 
@@ -70,8 +72,8 @@ URFManager.start = function() {
 		that.queryCycle();
 	}
 
-	URFManager.staticChampsErrorCallback = function() {
-		console.log( "ERROR with fetching static champ data");
+	URFManager.staticChampsErrorCallback = function(data) {
+		console.log( "ERROR with fetching static champ data: \n" + data);
 		process.exit(1);
 	}
 
@@ -79,15 +81,21 @@ URFManager.start = function() {
 }
 
 // rate at which server pulls challenge API data from riot (in ms)
-const dataUpdateRate = 1010 * 60 * 5; // 1000 is one second (so we do every five minutes so we dget new challenge games)
-const amountOfGamesAnalyzedPerCall = 10;
-const gameAnalyzedPerCallRate = 4000; // delay between each call to analyze a game
+const dataUpdateRate = 20000;// 1010 * 60 * 5; // 1000 is one second (so we do every five minutes so we dget new challenge games)
+// const amountOfGamesAnalyzedPerCall = 10;
+const gameAnalyzedPerCallRate = 3000; // delay between each call to analyze a game
+
+const APISearchStartTime = 1427919000;
+const APISearchEndTime = 1428869400;
+URFManager.lastRetrievedTime = APISearchStartTime;
+
+var queryInterval;
 
 // this cycle manages the server updating the URF data.
 URFManager.queryCycle = function() {
 	var that = this; // hacky way to refer to the current obj in "async" calls
 
-	var queryInterval = setInterval(function () {
+	queryInterval = setInterval(function () {
 
 		// don't update data if not all of the set up data for the champions array is filled
 		if(that.championsDefined == false) {
@@ -172,7 +180,7 @@ URFManager.queryCycle = function() {
 				currentGameToAnalyze ++;
 
 				// end the analyze loop
-				if(currentGameToAnalyze >= amountOfGamesAnalyzedPerCall || currentGameToAnalyze >= matchArray.length) {
+				if(currentGameToAnalyze >= matchArray.length) { //currentGameToAnalyze >= amountOfGamesAnalyzedPerCall || 
 					clearInterval(gameAnalyzeInterval);
 					gameAnalyzeInterval = 0;
 				}
@@ -180,6 +188,27 @@ URFManager.queryCycle = function() {
 		}
 
 		// call the API Manager to get 15 game ids (sent to successCallBack).
-		APIManager.getMostRecentChallengeAPI(successCallBack, errorCallback);
+		// APIManager.getMostRecentChallengeAPI(successCallBack, errorCallback);
+		var nextTimeToGet = that.lastRetrievedTime;
+
+		APIManager.getChallengeAPI(nextTimeToGet, successCallBack, errorCallback);
+
+		that.lastRetrievedTime += 5 * 1000 * 60;
+
+		if(that.lastRetrievedTime > APISearchEndTime) {
+
+			clearInterval(queryInterval);
+			queryInterval = 0;
+
+			console.log("Finished parsing all Challenge API Data");
+			fs.writeFile("FullChallengeData", JSON.stringify(that.URFData), function(err) {
+			    if(err) {
+			        return console.log(err);
+			    }
+
+			    console.log("The file was saved!");
+			}); 
+		}
+
 	}, dataUpdateRate);
 }

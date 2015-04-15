@@ -125,7 +125,7 @@ APIManager.getChallengeAPI = function (beginDate, callback, errorCallback) {
 }
 
 // used to get the Challenge API acceptable time A DAY AGO
-var getTruncatedFiveMinTime = function(timeVar) {
+APIManager.getTruncatedFiveMinTime = function(timeVar) {
 
 	// var fromtimevar = new Date(timeVar.getFullYear(),1,1,4,55); // 4:55
 
@@ -149,7 +149,7 @@ APIManager.getMostRecentChallengeAPI = function (callback, errorCallback) {
 
 	var currentTime = new Date(); // .parseDate();
 
-	var pullTime = (getTruncatedFiveMinTime(currentTime)*0.001);//+200;
+	var pullTime = (this.getTruncatedFiveMinTime(currentTime)*0.001);//+200;
 
 	// console.log("Date:Hours:Minutes:Seconds:Milliseconds  |  " + currentTime.getDate() + " : " + currentTime.getHours() + " : " + currentTime.getMinutes() + " : " + currentTime.getSeconds() + " : " + currentTime.getMilliseconds());
 

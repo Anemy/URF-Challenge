@@ -5,7 +5,7 @@ var url = require('url');
 var router = express.Router();
 var request = require('request');
 
-var APIManager = require('../request_manager/APIManager.js');
+var APIManager = require('../request_manager/APIManager.js'); 
 var URFManager = require('../request_manager/URFManager.js');
 URFManager.start();
 
@@ -33,7 +33,7 @@ router.get('/playerData*', function(req, res, next) {
 				// gets the first element of the json
 				break;
 			}
-			console.log("Summoner id: " + jsonData[username].id);
+			// console.log("Summoner id: " + jsonData[username].id);
 
 			var innerCallback = function (innerData) {
 				res.status(200);

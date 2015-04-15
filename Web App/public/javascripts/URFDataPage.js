@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 	currentlySearching = true;
 
-	console.log("Making request...");
+	// console.log("Making request...");
 
 	// sets the Searching... animation running
 	searchingAnimation = setInterval(function() {
@@ -74,7 +74,29 @@ $(document).ready(function() {
 
 var URFDataArray = [];
 var tableSortResponderAllowed = false;
-var descending = true;
+var descending = false;
+var lastColClicked = "none";
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// used to return the champion name after some calcs (EX: LeBlanc -> Leblanc)
+var getAPIName = function (champName) {
+	champName.replace('.', '');
+	if(champName.indexOf(' ') != -1) {
+		return champName.replace(' ', '');
+	}
+	else if(champName.indexOf('\'') != -1) {
+		if(champName == "Cho'Gath" || champName == "Kha'Zix" || champName == "Vel'Koz") {
+			return capitalizeFirstLetter(champName.replace('\'', '').toLowerCase());
+		}
+		return capitalizeFirstLetter(champName.replace('\'', ''));
+	}
+	else {
+		return capitalizeFirstLetter(champName.toLowerCase());
+	}
+}
 
 var displayTable = function () {
 	var htmlToAdd = "";
@@ -84,7 +106,7 @@ var displayTable = function () {
 	htmlToAdd += "<tr>";
 	htmlToAdd += '<td></td>';
 	htmlToAdd += '<td><a id="championName" class="tableColTitle">Champion</a></td>';
-	htmlToAdd += '<td><a id="winRate" class="tableColTitle">Win Ratio</a></td>';
+	htmlToAdd += '<td><a id="winRate" class="tableColTitle">Win %</a></td>';
 	htmlToAdd += '<td><a id="plays" class="tableColTitle">Plays</a></td>';
 	htmlToAdd += '<td><a id="kda" class="tableColTitle">Kill/Death</a></td>';
 	htmlToAdd += '<td><a id="avgGold" class="tableColTitle">Average Gold</a></td>';
@@ -95,13 +117,13 @@ var displayTable = function () {
 		htmlToAdd += "<tr>";
 		// console.log("This champ: " + matchData.champions[champion].champName);
 		// add image here
-		htmlToAdd += '<td class="champImg"><img class="champImg" src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/' + URFDataArray[champion].champName + '.png"/></td>';
-		htmlToAdd += '<td style="text-align: left; padding-left: 52px;">' + URFDataArray[champion].champName + "</td>";
-		htmlToAdd += '<td>' + URFDataArray[champion].winRate + '</td>';
+		htmlToAdd += '<td class="champImg"><img class="champImg" src="http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/' + getAPIName(URFDataArray[champion].champName) + '.png" onError="this.onerror=null;this.src=\'https://cdn.leagueoflegends.com/riotbar/prod/1.4.9/images/bar/icon-game-lol.png?1428716565\';"/></td>';
+		htmlToAdd += '<td style="text-align: left; padding-left: 70px;">' + URFDataArray[champion].champName + "</td>";
+		htmlToAdd += '<td>' + (100*URFDataArray[champion].winRate).toPrecision(4) + '</td>';
 		htmlToAdd += '<td>' + URFDataArray[champion].totalPlays + '</td>';
-		htmlToAdd += '<td>' + URFDataArray[champion].kda + '</td>';
-		htmlToAdd += '<td>' + URFDataArray[champion].averageGold + '</td>';
-		htmlToAdd += '<td>' + URFDataArray[champion].averageCS + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].kda.toPrecision(4) + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].averageGold.toPrecision(7) + '</td>';
+		htmlToAdd += '<td>' + URFDataArray[champion].averageCS.toPrecision(4) + '</td>';
 		
 		htmlToAdd += '</tr>';
 	}
@@ -109,24 +131,67 @@ var displayTable = function () {
 	htmlToAdd += "</table>";
 	$('.champTable').html(htmlToAdd);
 
-	if(tableSortResponderAllowed == false) {
+	$('.URFStatsPage').css('height', $('.champTable').height() + 220);
+
+	// if(tableSortResponderAllowed == false) {
 		$('.tableColTitle').click(function(event) {
-			// if(event.target.id == "championName") {
-			// 	URFDataArray.sort(function(a,b) {
-			// 		if(desending)
-			// 	}
-			// }
-			// else {
-			// 	URFDataArray.sort(function(a,b) {
-			// 		descending
-			// 	}
-			// }
+			if(lastColClicked == event.target.id.toString()) {
+				// console.log("Switch up the descend");
+				descending = !descending;
+			}
+			lastColClicked = event.target.id.toString();
 
-			// displayTable();
+			if(event.target.id == "championName") { 
+
+				console.log("Sort by champ name");
+
+				URFDataArray.sort(function(a,b) {
+
+					// console.log("Champion name: " + a.champName);
+
+					var toReturn = a.champName.toString().localeCompare(b.champName.toString());
+					// console.log("Local compare: " + toReturn);
+
+					if(!descending) {
+						toReturn = -toReturn;
+					}
+
+					return toReturn;
+				});
+			}
+			else {
+				URFDataArray.sort(function(a,b) {
+					var toReturn = 0;
+					if(event.target.id == "winRate") {
+						toReturn = a.winRate - b.winRate;
+					}
+					else if(event.target.id == "plays") {
+						toReturn = a.totalPlays - b.totalPlays;
+					}
+					else if(event.target.id == "kda") {
+						toReturn = a.kda - b.kda;
+					}
+					else if(event.target.id == "avgGold") {
+						toReturn = a.averageGold - b.averageGold;
+					}
+					else if(event.target.id == "avgCS") {
+						toReturn = a.averageCS - b.averageCS;
+					}
+
+					if(!descending) {
+						toReturn = -toReturn;
+					}
+
+					return toReturn;
+					// descending
+				});
+			}
+
+			displayTable();
 		});
-	}
+	// }
 
-	tableSortResponderAllowed = true;
+	// tableSortResponderAllowed = true;
 }
 
 var parseURFData = function (matchData) {
@@ -139,6 +204,7 @@ var parseURFData = function (matchData) {
 		// console.log("\n\nData 2: " + matchData[matchArray]);
 
 		if(matchData.champions[champion] != "null" && matchData.champions[champion] != null) {
+			// matchData.champions[champion].winRate = Math.floor(Math.random() * 100);
 			URFDataArray.push(matchData.champions[champion]);
 		}
 	}
