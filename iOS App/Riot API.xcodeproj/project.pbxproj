@@ -16,7 +16,9 @@
 		5E56C5351ADCFE1200F55BE5 /* SummonerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E56C5341ADCFE1200F55BE5 /* SummonerViewController.swift */; };
 		5E56C5371ADCFE1E00F55BE5 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E56C5361ADCFE1E00F55BE5 /* InformationViewController.swift */; };
 		5E56C5391ADD008000F55BE5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E56C5381ADD008000F55BE5 /* Alamofire.swift */; };
-		5E56C53E1ADD09D800F55BE5 /* FMDB in Resources */ = {isa = PBXBuildFile; fileRef = 5E56C53D1ADD09D800F55BE5 /* FMDB */; };
+		5E611E9A1ADDAF7500663B1F /* Champion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E611E991ADDAF7500663B1F /* Champion.swift */; };
+		5E611E9D1ADE1A8000663B1F /* URFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E611E9C1ADE1A8000663B1F /* URFTableViewCell.swift */; };
+		5E611EA51ADE27DB00663B1F /* PASImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E611EA41ADE27DB00663B1F /* PASImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +45,10 @@
 		5E56C5341ADCFE1200F55BE5 /* SummonerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummonerViewController.swift; sourceTree = "<group>"; };
 		5E56C5361ADCFE1E00F55BE5 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		5E56C5381ADD008000F55BE5 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
-		5E56C53D1ADD09D800F55BE5 /* FMDB */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FMDB; sourceTree = "<group>"; };
 		5E56C53F1ADD09F500F55BE5 /* Riot API Bridging Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Riot API Bridging Header.h"; sourceTree = "<group>"; };
+		5E611E991ADDAF7500663B1F /* Champion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Champion.swift; sourceTree = "<group>"; };
+		5E611E9C1ADE1A8000663B1F /* URFTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URFTableViewCell.swift; sourceTree = "<group>"; };
+		5E611EA41ADE27DB00663B1F /* PASImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PASImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,7 @@
 		5E56C50F1ADCE85300F55BE5 /* Riot API */ = {
 			isa = PBXGroup;
 			children = (
+				5E611E9B1ADE1A4B00663B1F /* Views */,
 				5E56C53A1ADD008A00F55BE5 /* Libraries */,
 				5E56C5121ADCE85300F55BE5 /* AppDelegate.swift */,
 				5E56C5161ADCE85300F55BE5 /* Main.storyboard */,
@@ -94,6 +99,7 @@
 				5E56C51B1ADCE85300F55BE5 /* LaunchScreen.xib */,
 				5E56C5101ADCE85300F55BE5 /* Supporting Files */,
 				5E56C53F1ADD09F500F55BE5 /* Riot API Bridging Header.h */,
+				5E611E981ADDAF5700663B1F /* Models */,
 			);
 			path = "Riot API";
 			sourceTree = "<group>";
@@ -126,7 +132,7 @@
 		5E56C53A1ADD008A00F55BE5 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				5E56C53D1ADD09D800F55BE5 /* FMDB */,
+				5E611EA41ADE27DB00663B1F /* PASImageView.swift */,
 				5E56C5381ADD008000F55BE5 /* Alamofire.swift */,
 			);
 			name = Libraries;
@@ -135,11 +141,27 @@
 		5E56C53B1ADD009000F55BE5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5E56C5341ADCFE1200F55BE5 /* SummonerViewController.swift */,
 				5E56C5361ADCFE1E00F55BE5 /* InformationViewController.swift */,
+				5E56C5341ADCFE1200F55BE5 /* SummonerViewController.swift */,
 				5E56C5321ADCFDF600F55BE5 /* URFViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5E611E981ADDAF5700663B1F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5E611E991ADDAF7500663B1F /* Champion.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		5E611E9B1ADE1A4B00663B1F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E611E9C1ADE1A8000663B1F /* URFTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,7 +245,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E56C5181ADCE85300F55BE5 /* Main.storyboard in Resources */,
-				5E56C53E1ADD09D800F55BE5 /* FMDB in Resources */,
 				5E56C51D1ADCE85300F55BE5 /* LaunchScreen.xib in Resources */,
 				5E56C51A1ADCE85300F55BE5 /* Images.xcassets in Resources */,
 			);
@@ -243,11 +264,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E611E9D1ADE1A8000663B1F /* URFTableViewCell.swift in Sources */,
 				5E56C5351ADCFE1200F55BE5 /* SummonerViewController.swift in Sources */,
 				5E56C5391ADD008000F55BE5 /* Alamofire.swift in Sources */,
+				5E611E9A1ADDAF7500663B1F /* Champion.swift in Sources */,
 				5E56C5331ADCFDF600F55BE5 /* URFViewController.swift in Sources */,
 				5E56C5131ADCE85300F55BE5 /* AppDelegate.swift in Sources */,
 				5E56C5371ADCFE1E00F55BE5 /* InformationViewController.swift in Sources */,
+				5E611EA51ADE27DB00663B1F /* PASImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +469,7 @@
 				5E56C52E1ADCE85300F55BE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E56C52F1ADCE85300F55BE5 /* Build configuration list for PBXNativeTarget "Riot APITests" */ = {
 			isa = XCConfigurationList;
@@ -453,6 +478,7 @@
 				5E56C5311ADCE85300F55BE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
