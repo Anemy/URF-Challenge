@@ -133,7 +133,7 @@ This is the style sheet for the main landing page of the website
         border-bottom: 2px solid white;
         cursor: pointer; }
       .landingPage .topBarWrapper .topBar #nemesisTop {
-        font-size: 20px; }
+        font-size: 18px; }
   .landingPage .middleArea {
     position: absolute;
     left: 0;
@@ -260,7 +260,7 @@ This is the style sheet for the about page of the website
         border-bottom: 2px solid white;
         cursor: pointer; }
       .aboutPage .topBarWrapper .topBar #nemesisTop {
-        font-size: 20px; }
+        font-size: 18px; }
 
 .URFStatsPage {
   /* Background pattern from subtlepatterns.com */
@@ -323,7 +323,22 @@ This is the style sheet for the about page of the website
         border-bottom: 2px solid white;
         cursor: pointer; }
       .URFStatsPage .topBarWrapper .topBar #nemesisTop {
-        font-size: 20px; }
+        font-size: 18px; }
+  .URFStatsPage .topMiddleBarWrap {
+    display: none;
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 1.7em;
+    z-index: -3; }
+    .URFStatsPage .topMiddleBarWrap .topMiddleBar {
+      background-color: #F5F5F5;
+      z-index: 3;
+      position: absolute;
+      top: -6px;
+      left: -14px;
+      width: 3px;
+      height: 28px; }
   .URFStatsPage .searching {
     position: absolute;
     width: 100%;
@@ -349,10 +364,26 @@ This is the style sheet for the about page of the website
       box-shadow: 0 0 2px #BDC3C7;
       margin-bottom: 20px;
       padding-bottom: 10px; }
+      .URFStatsPage .dataSectionOffset .dataSection .searchBox {
+        position: absolute;
+        right: 6%;
+        top: 24px;
+        outline: none;
+        border: none;
+        border: 1px solid #DDDDDD;
+        border-radius: 5px;
+        height: 20px;
+        width: 200px;
+        padding-left: 6px;
+        font-size: 12px; }
+      .URFStatsPage .dataSectionOffset .dataSection .searchBox:focus {
+        box-shadow: 0 0 2px #3498DB; }
+      .URFStatsPage .dataSectionOffset .dataSection .searchButton {
+        text-indent: -9999em; }
       .URFStatsPage .dataSectionOffset .dataSection .gamesAnalyzed {
         position: absolute;
-        right: 5%;
-        top: 24px;
+        left: 8%;
+        top: 30px;
         font-size: 18px;
         color: #3498DB; }
       .URFStatsPage .dataSectionOffset .dataSection .tableTitle {
@@ -377,6 +408,18 @@ This is the style sheet for the about page of the website
               color: #2980B9; }
             .URFStatsPage .dataSectionOffset .dataSection .champTable table tr .tableColTitle:active {
               color: #3498DB; }
+            .URFStatsPage .dataSectionOffset .dataSection .champTable table tr .swapImage {
+              display: inline-block;
+              z-index: 105;
+              width: 12px;
+              height: 12px;
+              margin-top: 2px;
+              margin-left: 2px;
+              background: url('/images/sort35.png');
+              background-size: 12px 12px; }
+            .URFStatsPage .dataSectionOffset .dataSection .champTable table tr .swapImage.hover {
+              background: url('/images/sort35blue.png');
+              background-size: 12px 12px; }
             .URFStatsPage .dataSectionOffset .dataSection .champTable table tr .champImg {
               position: absolute;
               left: 30px;

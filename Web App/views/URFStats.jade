@@ -9,14 +9,17 @@ block content
 			.topBar
 				a.topOption(href="/about").
 					About
-				a.topOption(href="/")#nemesisTop.
-					Nemesis
-				a.topOption(href="/URF").
+				a.topOption(href="/URF")#nemesisTop.
 					URF Stats
+				a.topOption(href="/").
+					Nemesis
+		.topMiddleBarWrap
+			.topMiddleBar
 		.dataSectionOffset
 			.searching.
 				Searching...
 			.dataSection
+				input.searchBox(type="text" placeholder="Search a champion" autocomplete="on")
 				.tableTitle.
 					URF Champion Statistics
 				.gamesAnalyzed

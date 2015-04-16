@@ -76,6 +76,7 @@
     .topBarWrapper {
         position: absolute;
         width: 100%;
+        // left: 100%;
         // height: 100%;
 
         text-align: center;  
@@ -102,8 +103,33 @@
             }
 
             #nemesisTop {
-                font-size: 20px;
+                font-size: 18px;
             }
+        }
+    }
+
+    .topMiddleBarWrap {
+        display: none;
+
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        top: 1.7em;
+
+        z-index: -3;
+
+        .topMiddleBar {
+            background-color: #F5F5F5;
+
+            z-index: 3;
+
+            position: absolute;
+            
+            top: -6px;
+            left: -14px;
+
+            width: 3px;
+            height: 28px;
         }
     }
 
@@ -143,12 +169,35 @@
 
             margin-bottom: 20px;
             padding-bottom: 10px;
+            .searchBox {
+                position: absolute;
+                right: 6%;
+                top: 24px;
 
+                outline: none;
+                border: none;
+
+                border: 1px solid #DDDDDD;// $light;
+                border-radius: 5px;
+
+                height: 20px;
+                width: 200px;
+                padding-left: 6px;
+
+                font-size: 12px;
+            }
+            .searchBox:focus {
+                box-shadow: 0 0 2px $peter-river;
+                // box-shadow: 0 0 2px $accent2;
+            }
+            .searchButton {
+                text-indent: -9999em
+            }
 
 	    	.gamesAnalyzed {
                 position: absolute;
-	    		right: 5%;
-	    		top: 24px;
+	    		left: 8%;
+	    		top: 30px;
 
 	    		font-size: 18px;
                 color: $peter-river;
@@ -182,6 +231,24 @@
                         }
                         .tableColTitle:active {
                             color: $peter-river;
+                        }
+                        .swapImage {
+                            display: inline-block;
+
+                            z-index: 105; 
+
+                            width: 12px;
+                            height: 12px;
+
+                            margin-top: 2px;
+                            margin-left: 2px;
+
+                            background: url('/images/sort35.png');
+                            background-size: 12px 12px;
+                        }
+                        .swapImage.hover {
+                            background: url('/images/sort35blue.png');
+                            background-size: 12px 12px;
                         }
 
                         .champImg {

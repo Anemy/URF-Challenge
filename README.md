@@ -31,10 +31,12 @@ Returns the server's total compiled URF Data as JSON
 |**totalLosses** 	| int 			| The number of games a champion has lost in			|
 |**winRate** 		| double 		| A ratio of wins to losses								|
 |**kills** 			| int 			| Total kills for all games								|
+|**assists** 		| int 			| Total assists for all games							|
 |**deaths** 		| int 			| Total deaths for all games							|
 |**averageKills** 	| double 		| Average kills per game								|
+|**averageAssists** | double 		| Average assists per game								|
 |**averageDeaths** 	| double 		| Average deaths per game								|
-|**kda** 			| double 		| A ratio of average kills to death						|
+|**kda** 			| double 		| A ratio of average kills + assists to death			|
 |**gold** 			| int 			| Total gold earned by a champion 						|
 |**averageGold** 	| double 		| Average gold earned by champion each game				|
 |**cs** 			| int 			| Total cs earned by champion 							|
