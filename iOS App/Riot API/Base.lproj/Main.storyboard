@@ -8,15 +8,23 @@
         <scene sceneID="v3R-Xu-HrG">
             <objects>
                 <tableViewController id="L0h-eW-ABq" customClass="InformationViewController" customModule="Riot_API" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SS3-3j-IfW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="SS3-3j-IfW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Information Cell" id="d42-t7-ARP">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Information Cell" textLabel="rnW-bo-pfS" style="IBUITableViewCellStyleDefault" id="d42-t7-ARP">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d42-t7-ARP" id="env-4i-ehl">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rnW-bo-pfS">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -26,10 +34,32 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Game Information" id="5py-v9-yKH"/>
+                    <connections>
+                        <segue destination="8Bh-bi-rmM" kind="push" identifier="toInformationDetail" id="vb3-5K-l8u"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTw-VX-0LA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="762" y="836"/>
+        </scene>
+        <!--Information Detail View Controller-->
+        <scene sceneID="P7q-oK-cuU">
+            <objects>
+                <viewController id="8Bh-bi-rmM" customClass="InformationDetailViewController" customModule="Riot_API" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="st6-ki-scE"/>
+                        <viewControllerLayoutGuide type="bottom" id="CCb-Nu-4ag"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bHS-uR-7MQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1Oh-bM-c1E"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qKJ-OY-cBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1261" y="836"/>
         </scene>
         <!--Information-->
         <scene sceneID="lLr-Ap-v5z">
@@ -66,7 +96,7 @@
                             </scopeButtonTitles>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="URF Cell" id="P3D-oG-dQP" customClass="URFTableViewCell" customModule="Riot_API" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="URF Cell" id="P3D-oG-dQP" customClass="URFTableViewCell" customModule="Riot_API" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P3D-oG-dQP" id="Fqz-bg-WZ0">
                                     <autoresizingMask key="autoresizingMask"/>

@@ -19,6 +19,7 @@
 		5E611E9D1ADE1A8000663B1F /* URFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E611E9C1ADE1A8000663B1F /* URFTableViewCell.swift */; };
 		5E611EA51ADE27DB00663B1F /* PASImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E611EA41ADE27DB00663B1F /* PASImageView.swift */; };
 		5EFC61AD1ADF704700026C0B /* URFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC61AC1ADF704700026C0B /* URFDetailViewController.swift */; };
+		5EFC61CB1ADF894E00026C0B /* InformationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC61CA1ADF894E00026C0B /* InformationDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,11 +33,11 @@
 		5E56C5341ADCFE1200F55BE5 /* SummonerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummonerViewController.swift; sourceTree = "<group>"; };
 		5E56C5361ADCFE1E00F55BE5 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		5E56C5381ADD008000F55BE5 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
-		5E56C53F1ADD09F500F55BE5 /* Riot API Bridging Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Riot API Bridging Header.h"; sourceTree = "<group>"; };
 		5E611E991ADDAF7500663B1F /* Champion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Champion.swift; sourceTree = "<group>"; };
 		5E611E9C1ADE1A8000663B1F /* URFTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URFTableViewCell.swift; sourceTree = "<group>"; };
 		5E611EA41ADE27DB00663B1F /* PASImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PASImageView.swift; sourceTree = "<group>"; };
 		5EFC61AC1ADF704700026C0B /* URFDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URFDetailViewController.swift; sourceTree = "<group>"; };
+		5EFC61CA1ADF894E00026C0B /* InformationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +78,6 @@
 				5E56C5191ADCE85300F55BE5 /* Images.xcassets */,
 				5E56C51B1ADCE85300F55BE5 /* LaunchScreen.xib */,
 				5E56C5101ADCE85300F55BE5 /* Supporting Files */,
-				5E56C53F1ADD09F500F55BE5 /* Riot API Bridging Header.h */,
 				5E611E981ADDAF5700663B1F /* Models */,
 			);
 			path = "Riot API";
@@ -103,10 +103,11 @@
 		5E56C53B1ADD009000F55BE5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5EFC61CA1ADF894E00026C0B /* InformationDetailViewController.swift */,
 				5E56C5361ADCFE1E00F55BE5 /* InformationViewController.swift */,
 				5E56C5341ADCFE1200F55BE5 /* SummonerViewController.swift */,
-				5E56C5321ADCFDF600F55BE5 /* URFViewController.swift */,
 				5EFC61AC1ADF704700026C0B /* URFDetailViewController.swift */,
+				5E56C5321ADCFDF600F55BE5 /* URFViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -201,6 +202,7 @@
 				5E56C5351ADCFE1200F55BE5 /* SummonerViewController.swift in Sources */,
 				5E56C5391ADD008000F55BE5 /* Alamofire.swift in Sources */,
 				5EFC61AD1ADF704700026C0B /* URFDetailViewController.swift in Sources */,
+				5EFC61CB1ADF894E00026C0B /* InformationDetailViewController.swift in Sources */,
 				5E611E9A1ADDAF7500663B1F /* Champion.swift in Sources */,
 				5E56C5331ADCFDF600F55BE5 /* URFViewController.swift in Sources */,
 				5E56C5131ADCE85300F55BE5 /* AppDelegate.swift in Sources */,
@@ -317,9 +319,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Riot API/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Riot API/Riot API Bridging Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -328,9 +333,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Riot API/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Riot API/Riot API Bridging Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

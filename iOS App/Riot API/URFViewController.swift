@@ -123,8 +123,6 @@ class URFViewController: UITableViewController, UISearchBarDelegate, UIActionShe
         cell.csLabel.text = "\(round(resChampions[indexPath.row].averageCS * 100) / 100)"
         cell.goldLabel.text = "\(round(resChampions[indexPath.row].averageGold * 100) / 100)"
         
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        
         return cell
     }
     
