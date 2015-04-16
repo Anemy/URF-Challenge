@@ -5,7 +5,7 @@ var url = require('url');
 var router = express.Router();
 var request = require('request');
 
-const fetchNewData = true;
+const fetchNewData = false;
 
 var APIManager = require('../request_manager/APIManager.js'); 
 var URFManager = require('../request_manager/URFManager.js');

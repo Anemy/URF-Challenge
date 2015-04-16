@@ -38,6 +38,15 @@ This is the style sheet for the main landing page of the website
         color: black;
     }
 
+    .topGitHub {
+        position: absolute;
+        top: 0.5em;
+        right: 1em;
+
+        height: 3.7em;
+        width: 3.7em;
+    }
+
     .redBackground {
         background: -webkit-linear-gradient($accent1, $accent2); /* For Safari 5.1 to 6.0 */
         background: -o-linear-gradient($accent1, $accent2); /* For Opera 11.1 to 12.0 */

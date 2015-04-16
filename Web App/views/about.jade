@@ -4,6 +4,8 @@ block content
 		.redBackground
 		.redPattern
 		.teeeeeeeeeemo
+		a.githubLink(href="https://github.com/Anemy/URF-Challenge")
+			img.topGitHub(src="/images/github-white.png")
 		.topBarWrapper
 			.topBar
 				a.topOption(href="/about").
@@ -12,3 +14,39 @@ block content
 					URF Stats
 				a.topOption(href="/").
 					Nemesis
+		.middleBody
+			.panel
+				.panelTitle.
+					About
+				.panelContent.
+					This is a submition to the League of Legends API Challenge. By Rhys Howell & George Lo :)
+					<br>We've made a web app and an iOS app which display data relating to champion statistics in URF.
+					<br>We also made a server which compiles URF game data for champion analysis. (See Github for documentation)
+					<br><br>
+					Check out the Github Repo:
+					<br>
+					<img class="textLogo" src="https://cdn1.iconfinder.com/data/icons/simple-icons/1024/github-1024-black.png"/>
+					<span class="middleAlign"><a class="linkClass" href="https://github.com/Anemy/URF-Challenge">https://github.com/Anemy/URF-Challenge</a></span>
+			.panel
+				.panelTitle.
+					iOS App
+				.panelContent.
+					<img class="panelContentImage" src="http://i.imgur.com/lNFfUGV.png"/>
+					<img class="panelContentImage" src="http://i.imgur.com/ombO5pn.png"/>
+					<img class="panelContentImage" src="http://i.imgur.com/TtxHqg9.png"/>
+					<img class="panelContentImage" src="http://i.imgur.com/PpnoR4L.png"/>
+					<img class="panelContentImage" src="http://i.imgur.com/zvTMmLV.png"/>
+			.panel
+				.panelTitle.
+					Web App
+				.panelContent.
+					Click the URF Stats tab up top to check it out!
+					<br>
+					The web app pulls data from the node js server which is pulling data from the API.
+					<br>
+					The Nemesis tab is a coming soon feature which will give insight into who you play a lot and how often you beat them! Who's your nemesis?
+	script(defer="defer").
+		//- console.log("before height: "+$('.aboutPage').height());
+		// auto sizes to fit the screensize on refresh
+		$('.aboutPage').css('height', $(document).height() + 120);
+		//- console.log("after height: "+$('.aboutPage').height());

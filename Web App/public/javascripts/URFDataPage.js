@@ -63,7 +63,7 @@ $(document).ready(function() {
 
 			// sets the text of the description to the response
 			$('.searching').text(messageToDisplay);//messageToDisplay);
-			$('.searching').css('display', 'none');
+			// $('.searching').css('display', 'none');
 
 			// call to parse the returned match data
 			parseURFData(JSON.parse(data));
