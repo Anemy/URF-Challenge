@@ -45,8 +45,25 @@ block content
 					The web app pulls data from the node js server which is pulling data from the API.
 					<br>
 					The Nemesis tab is a coming soon feature which will give insight into who you play a lot and how often you beat them! Who's your nemesis?
+			.panel
+				.panelTitle.
+					The Team
+				.panelContent.
+					The Web App and iOS app were created by Rhys Howell & George Lo.
+					<br>
+					We're Computer Science students at Purdue University!
+					<br>
+					<br>
+					Check out our githubs!
+					<br>
+					<img class="textLogo" src="https://cdn1.iconfinder.com/data/icons/simple-icons/1024/github-1024-black.png"/>
+					<span class="middleAlign"><a class="linkClass" href="https://github.com/Anemy">https://github.com/Anemy</a></span>
+					<br>
+					<img class="textLogo" src="https://cdn1.iconfinder.com/data/icons/simple-icons/1024/github-1024-black.png"/>
+					<span class="middleAlign"><a class="linkClass" href="https://github.com/twgeolo">https://github.com/twgeolo</a></span>
 	script(defer="defer").
 		//- console.log("before height: "+$('.aboutPage').height());
 		// auto sizes to fit the screensize on refresh
-		$('.aboutPage').css('height', $(document).height() + 120);
+		$('.aboutPage').css('height', $('.middleBody').height() + 120);
+		setInterval(function(){$('.aboutPage').css('height', $('.middleBody').height() + 120);},5000);
 		//- console.log("after height: "+$('.aboutPage').height());

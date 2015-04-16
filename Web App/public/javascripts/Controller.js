@@ -42,7 +42,7 @@ $(document).ready(function() {
 			clearInterval(searchingAnimation);
 			searchingAnimation = null;
 
-			$('.searchDescription').text("Sorry, this feature is under development, please check back in a week or two for your nemesis.");
+			$('.searchDescription').html("Sorry, this feature is under development, please check back in a week or two for your nemesis.<br><br> In the meantime you can check out the URF champion statistics!");
 		}, 1000);
 
 		// does a get request to the server for a specified summoner
