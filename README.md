@@ -2,8 +2,18 @@
 
 An application which provides insights into a URF win ratios for champions in League of Legends.
 
+This repo contains the mobile app, web app, and server for the URF Challenge Statistics.
+Here are some screenshots!
+
+___
+### INSERT SCREENSHOTS HERE
+___
+
 Run the server on your localhost (with Node.js installed) using the command:
 npm start
+
+From there you will be able to connect to the web app locally.
+You can run the iOS app through xCode (It isn't published on the iOS store yet).
 
 My API End points:
 (Currently only hosted on local host - will update with server later once I have a server running)
@@ -45,8 +55,7 @@ Returns the server's total compiled URF Data as JSON
 ### - GET  /playerData?name={summoner_name}
 
 Currently just returns the requested summoner's past 10 matches as JSON (under development)
-
-###### Format:
+Will be used to return nemesis data.
 
 ---
-By Rhys 
+###### By Rhys Howell & George Lo
