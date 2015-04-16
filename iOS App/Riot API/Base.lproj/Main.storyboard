@@ -56,6 +56,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for a champion" id="FAK-ti-8eu">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="URF Cell" id="P3D-oG-dQP" customClass="URFTableViewCell" customModule="Riot_API" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -69,9 +78,32 @@
                             <outlet property="delegate" destination="4Rx-ls-P0T" id="4Mz-sn-a5D"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="URF Statistics" id="iqw-W2-5gb"/>
+                    <navigationItem key="navigationItem" title="URF Statistics" id="iqw-W2-5gb">
+                        <barButtonItem key="leftBarButtonItem" image="Sort" id="chC-mA-Svb">
+                            <connections>
+                                <action selector="filterButtonPressed:" destination="4Rx-ls-P0T" id="RFV-hr-cqj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Search" id="884-AJ-tc0">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="4Rx-ls-P0T" id="nZz-hG-q8p"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="FAK-ti-8eu" id="NVw-ea-xZL"/>
+                        <outlet property="searchDisplayController" destination="L5B-vf-gZW" id="R77-C0-66z"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4Z-VN-L2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="L5B-vf-gZW">
+                    <connections>
+                        <outlet property="delegate" destination="4Rx-ls-P0T" id="TIx-hu-w6R"/>
+                        <outlet property="searchContentsController" destination="4Rx-ls-P0T" id="iPN-mO-2k0"/>
+                        <outlet property="searchResultsDataSource" destination="4Rx-ls-P0T" id="Owj-vo-3Fa"/>
+                        <outlet property="searchResultsDelegate" destination="4Rx-ls-P0T" id="wwv-Wx-ME1"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="762" y="-429"/>
         </scene>
@@ -120,13 +152,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Summoner's Name" id="kP5-eH-tqR">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Summoner's name" id="Nmj-Jv-wko">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="qRq-uI-2Vn" id="XRr-qR-oX2"/>
-                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Summoner Cell" id="PVW-yq-nAy">
@@ -150,7 +179,6 @@
                 <searchDisplayController id="pZ8-zi-afb">
                     <connections>
                         <outlet property="delegate" destination="qRq-uI-2Vn" id="EEi-af-Xg5"/>
-                        <outlet property="searchBar" destination="kP5-eH-tqR" id="eRh-iq-cQB"/>
                         <outlet property="searchContentsController" destination="qRq-uI-2Vn" id="8MW-qZ-LAH"/>
                         <outlet property="searchResultsDataSource" destination="qRq-uI-2Vn" id="8ud-ck-Zoq"/>
                         <outlet property="searchResultsDelegate" destination="qRq-uI-2Vn" id="aMd-T4-eHx"/>
@@ -179,6 +207,8 @@
     </scenes>
     <resources>
         <image name="Information" width="25" height="25"/>
+        <image name="Search" width="25" height="25"/>
+        <image name="Sort" width="25" height="25"/>
         <image name="Summoner" width="25" height="25"/>
         <image name="URF" width="25" height="25"/>
     </resources>
