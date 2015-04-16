@@ -27,7 +27,6 @@ class Champion: NSObject, NSCoding {
     var totalLosses: Int
     var totalPlays: Int
     var totalWins: Int
-    
     var winRate: Double
     
     init(averageAssists: Double, averageCS: Double, averageDeaths: Double, averageGold: Double, averageKills: Double, champID: Int, champName: String, cs: Int, deaths: Int, gold: Int, kda: Double, kills: Int, totalLosses: Int, totalPlays: Int, totalWins: Int, winRate: Double) {

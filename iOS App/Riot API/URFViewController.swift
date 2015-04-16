@@ -13,6 +13,7 @@ class URFViewController: UITableViewController, UISearchBarDelegate, UIActionShe
     var allChampions: [Champion] = []
     var resChampions: [Champion] = []
     var sortOptions = -1
+    var selectedRow = -1
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -87,6 +88,11 @@ class URFViewController: UITableViewController, UISearchBarDelegate, UIActionShe
         }
         self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Top)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let detailViewController = segue.destinationViewController as! URFDetailViewController
+        detailViewController.champion = resChampions[selectedRow]
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -125,7 +131,9 @@ class URFViewController: UITableViewController, UISearchBarDelegate, UIActionShe
     // MARK: - Table view delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedRow = indexPath.row
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.performSegueWithIdentifier("toURFDetail", sender: self)
     }
     
     // MARK: - Search bar delegate
