@@ -34,6 +34,10 @@ class InformationViewController: UITableViewController {
     var selectedUrl: String?
     var selectedTitle: String?
 
+    @IBAction func aboutButtonPressed(sender: AnyObject) {
+        UIAlertView(title: "About", message: "Developed by George Lo and Rhys Howell.\n\nAll the images and data related to League of Legends belong to Riot Games.", delegate: nil, cancelButtonTitle: "OK").show()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

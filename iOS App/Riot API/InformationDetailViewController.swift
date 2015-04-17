@@ -25,6 +25,7 @@ class InformationDetailViewController: UIViewController, WKNavigationDelegate {
     // MARK: - WKNavigation Delegate
     
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        self.navigationItem.title = webView.title
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
     }
     
@@ -34,6 +35,11 @@ class InformationDetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+        self.navigationItem.title = webView.title
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    }
+    
+    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         self.navigationItem.title = webView.title
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
