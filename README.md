@@ -8,6 +8,7 @@ Check out the Web app here:
 http://vowb.net:4000/URF
 
 Here are some screenshots!
+(Scroll to the bottom for more info and how to run it :)
 
 ___
 ![Alt text](http://i.imgur.com/lNFfUGV.png)
