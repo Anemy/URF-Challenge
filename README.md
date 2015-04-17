@@ -3,6 +3,10 @@
 An application which provides insights into a URF win ratios for champions in League of Legends.
 
 This repo contains the mobile app, web app, and server for the URF Challenge Statistics.
+
+Check out the Web app here:
+http://vowb.net:4000/URF
+
 Here are some screenshots!
 
 ___
