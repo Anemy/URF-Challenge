@@ -86,16 +86,34 @@ URFManager.start = function() {
 const dataUpdateRate = 50000;// 1010 * 60 * 5; // 1000 is one second (so we do every five minutes so we dget new challenge games)
 // const amountOfGamesAnalyzedPerCall = 10;
 const gameAnalyzedPerCallRate = 4000; // delay between each call to analyze a game
+const saveUpdateRate = 1000 * 60 * 20;
 
 const APISearchStartTime = 1427919000;
 const APISearchEndTime = 1428869400;
 URFManager.lastRetrievedTime = APISearchStartTime;
 
 var queryInterval;
+var saveDataInterval;
 
 // this cycle manages the server updating the URF data.
 URFManager.queryCycle = function() {
 	var that = this; // hacky way to refer to the current obj in "async" calls
+
+	saveDataInterval = setInterval(function () {
+		// no data that's saved
+		if(that.championsDefined == false) {
+			return;
+		}
+
+		// console.log("Saving API Challenge Data");
+		fs.writeFile("ChallengeDataSave", that.lastRetrievedTime + " " + JSON.stringify(that.URFData), function(err) {
+		    if(err) {
+		        return console.log("SAVING DATA FAILED: " + err);
+		    }
+
+		    // console.log("The file was saved!");
+		}); 
+	}, saveUpdateRate);
 
 	queryInterval = setInterval(function () {
 
@@ -206,10 +224,13 @@ URFManager.queryCycle = function() {
 			clearInterval(queryInterval);
 			queryInterval = 0;
 
+			clearInterval(saveDataInterval);
+			saveDataInterval = 0;
+
 			console.log("Finished parsing all Challenge API Data");
 			fs.writeFile("FullChallengeData", JSON.stringify(that.URFData), function(err) {
 			    if(err) {
-			        return console.log(err);
+			        return console.log("SAVING FULL DATA FAILED: " + err);
 			    }
 
 			    console.log("The file was saved!");

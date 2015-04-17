@@ -74,6 +74,13 @@ This is the style sheet for the main landing page of the website
     color: white; }
   .landingPage .blackText {
     color: black; }
+  .landingPage .topGitHub {
+    position: absolute;
+    top: 0.5em;
+    right: 1em;
+    height: 3.7em;
+    width: 3.7em;
+    z-index: 110; }
   .landingPage .redBackground {
     background: -webkit-linear-gradient(#FF3B30, #FF2D55);
     /* For Safari 5.1 to 6.0 */
@@ -200,12 +207,12 @@ This is the style sheet for the about page of the website
 @author Rhys Howell
 */
 .aboutPage {
-  background-color: #F5F5F5;
+  background: url('/images/white_wall_hash.png');
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   text-align: center;
   font-family: 'MuseoSans300', sans-serif;
   color: white;
@@ -216,6 +223,13 @@ This is the style sheet for the about page of the website
     color: white; }
   .aboutPage .blackText {
     color: black; }
+  .aboutPage .topGitHub {
+    position: absolute;
+    top: 0.5em;
+    right: 1em;
+    height: 3.7em;
+    width: 3.7em;
+    z-index: 110; }
   .aboutPage .redBackground {
     background: -webkit-linear-gradient(#FF3B30, #FF2D55);
     /* For Safari 5.1 to 6.0 */
@@ -261,6 +275,44 @@ This is the style sheet for the about page of the website
         cursor: pointer; }
       .aboutPage .topBarWrapper .topBar #nemesisTop {
         font-size: 18px; }
+  .aboutPage .middleBody {
+    position: absolute;
+    left: 18%;
+    top: 5em;
+    width: 60%;
+    color: #290E03; }
+    .aboutPage .middleBody .panel {
+      margin-top: 2em;
+      width: 100%;
+      font-size: 1em; }
+      .aboutPage .middleBody .panel .panelTitle {
+        position: absolute;
+        left: 10%;
+        font-size: 1.5em;
+        color: #2C3E50; }
+      .aboutPage .middleBody .panel .panelContent {
+        width: 80%;
+        margin-left: 30%;
+        text-align: left;
+        line-height: 1.5em; }
+        .aboutPage .middleBody .panel .panelContent .middleAlign {
+          vertical-align: middle;
+          height: 4em; }
+          .aboutPage .middleBody .panel .panelContent .middleAlign .linkClass {
+            color: #3498DB;
+            position: relative;
+            bottom: 1.5em; }
+        .aboutPage .middleBody .panel .panelContent .linkClass:hover {
+          color: #2980B9; }
+        .aboutPage .middleBody .panel .panelContent .textLogo {
+          display: inline-block;
+          height: 4em;
+          width: auto; }
+        .aboutPage .middleBody .panel .panelContent .panelContentImage {
+          display: inline-block;
+          margin: 4px;
+          height: 22em;
+          width: auto; }
 
 .URFStatsPage {
   /* Background pattern from subtlepatterns.com */
@@ -269,11 +321,18 @@ This is the style sheet for the about page of the website
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   text-align: center;
   font-family: 'MuseoSans300', sans-serif;
   color: white;
   z-index: -3; }
+  .URFStatsPage .topGitHub {
+    position: absolute;
+    top: 0.5em;
+    right: 1em;
+    height: 3.7em;
+    width: 3.7em;
+    z-index: 110; }
   .URFStatsPage .accentText {
     color: #e74c3c; }
   .URFStatsPage .whiteText {

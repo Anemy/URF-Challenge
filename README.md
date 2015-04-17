@@ -6,7 +6,10 @@ This repo contains the mobile app, web app, and server for the URF Challenge Sta
 Here are some screenshots!
 
 ___
-### INSERT SCREENSHOTS HERE
+![Alt text](http://i.imgur.com/lNFfUGV.png)
+![Alt text](http://i.imgur.com/PpnoR4L.png)
+![Alt text](http://i.imgur.com/zvTMmLV.png)
+![Alt text](http://i.imgur.com/7jcvudp.jpg)
 ___
 
 Run the server on your localhost (with Node.js installed) using the command:
@@ -59,3 +62,5 @@ Will be used to return nemesis data.
 
 ---
 ###### By Rhys Howell & George Lo
+https://github.com/Anemy
+https://github.com/twgeolo
