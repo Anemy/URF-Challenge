@@ -7,8 +7,6 @@ Here are some screenshots!
 
 ___
 ![Alt text](http://i.imgur.com/lNFfUGV.png)
-![Alt text](http://i.imgur.com/ombO5pn.png)
-![Alt text](http://i.imgur.com/TtxHqg9.png)
 ![Alt text](http://i.imgur.com/PpnoR4L.png)
 ![Alt text](http://i.imgur.com/zvTMmLV.png)
 ![Alt text](http://i.imgur.com/7jcvudp.jpg)
@@ -64,3 +62,5 @@ Will be used to return nemesis data.
 
 ---
 ###### By Rhys Howell & George Lo
+https://github.com/Anemy
+https://github.com/twgeolo
