@@ -111,8 +111,18 @@ function capitalizeFirstLetter(string) {
 
 // used to return the champion name after some calcs (EX: LeBlanc -> Leblanc)
 var getAPIName = function (champName) {
+	if(champName == "Dr. Mundo") {
+		return "DrMundo";
+	}
+
 	champName.replace('.', '');
-	if(champName.indexOf(' ') != -1) {
+	if(champName == "Wukong") {
+		return "MonkeyKing";
+	}
+	else if(champName == "Fiddlesticks") {
+		return "FiddleSticks";
+	}
+	else if(champName.indexOf(' ') != -1) {
 		return champName.replace(' ', '');
 	}
 	else if(champName.indexOf('\'') != -1) {
