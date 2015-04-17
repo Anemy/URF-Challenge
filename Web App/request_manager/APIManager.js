@@ -9,12 +9,22 @@ var APIManager = module.exports = {
 	recentRequests: []
 }
 
-// Gets the environemental variable which holds your API key (this is on github so I don't want to post mine)
-APIManager.API_Key = process.env.riotAPIKey;
+// Make this variable true if you'd like to pull all of the data from the API (it compiles it overtime)
+APIManager.fetchNewData = false;
 
-if(APIManager.API_Key == undefined) {
-	console.log("API Key undefined. Please set the environemental variable or hardcode it. Now crashing.");
-	APIManager.YOU_NEED_A_API_KEY_ENVIRONMENT_VARIABLE_NAMED_riotAPIKey();
+if(APIManager.fetchNewData) {
+	console.log("The server will pull URF Challenge data from the riot API.");
+
+	// Gets the environemental variable which holds your API key (this is on github so I don't want to post mine)
+	APIManager.API_Key = process.env.riotAPIKey;
+
+	if(APIManager.API_Key == undefined) {
+		console.log("API Key undefined. Please set the environemental variable or hardcode it. Now crashing.");
+		APIManager.YOU_NEED_A_API_KEY_ENVIRONMENT_VARIABLE_NAMED_riotAPIKey();
+	}
+}
+else {
+	console.log("The server will use already compiled URF Challenge data from the riot API.");
 }
 
 // console.log("Your api key: " + process.env.riotAPIKey);
@@ -22,6 +32,7 @@ if(APIManager.API_Key == undefined) {
 APIManager.APILimitPerTenMinutes = 499;
 APIManager.APILimitPerTenSeconds = 9;
 
+// change this to pull data from another region
 APIManager.region = "na";
 
 // used to check if a user can make a request to the API (they aren't over the limit)

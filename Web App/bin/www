@@ -91,4 +91,4 @@ function onListening() {
 }
 
 console.log('Server is now online and listening on localhost:'+portNumber);
-console.log('API endpoints are on the README at: https://github.com/Anemy/URF-Challenge');
+console.log('More information can be found on the README at: https://github.com/Anemy/URF-Challenge');

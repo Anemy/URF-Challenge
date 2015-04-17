@@ -19,11 +19,16 @@ ___
 Run the server on your localhost (with Node.js installed) using the command:
 npm start
 
+If you'd like to have the server pull data from the API for you, rather than use our compiled URF Data you can change the variable APIManager.fetchNewData at the top of request_manager/APIManager.js  to true.
+You'll notice it will error unless you set an environment variable with your api key like so:
+export riotAPIKey=YOUR_RIOT_API_KEY
+
+
 From there you will be able to connect to the web app locally.
 You can run the iOS app through xCode (It isn't published on the iOS store yet).
 
 My API End points:
-(Currently only hosted on local host - will update with server later once I have a server running)
+http://vowb.net:4000/URFData
 
 ## URF Data
 ### - GET  /URFData

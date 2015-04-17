@@ -5,12 +5,10 @@ var url = require('url');
 var router = express.Router();
 var request = require('request');
 
-const fetchNewData = false;
-
 var APIManager = require('../request_manager/APIManager.js'); 
 var URFManager = require('../request_manager/URFManager.js');
 
-if(fetchNewData) {
+if(APIManager.fetchNewData) {
 	URFManager.start();
 }
 
@@ -49,8 +47,13 @@ router.get('/playerData*', function(req, res, next) {
 			APIManager.getMatchHistory(jsonData[username].id, innerCallback, errorCallback);
 		}
 
-		// requests the API manager to get the summoner data, tells it to use the above callbacks accordingly
-		APIManager.getSummonerData(queryData.name, callback, errorCallback);
+		if(APIManager.fetchNewData) {
+			// requests the API manager to get the summoner data, tells it to use the above callbacks accordingly
+			APIManager.getSummonerData(queryData.name, callback, errorCallback);
+		}
+		else {
+			errorCallback("Please change APIManager.fetchNewData on the server to true if you'd like to fetch data from the API.");
+		}
     }
 }); 
 
